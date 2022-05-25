@@ -1,0 +1,13 @@
+platform :ios, '9.0'
+
+target 'SwaarmSdk' do
+  use_frameworks!
+end
+
+target 'SwaarmSdkSimulator' do
+  use_frameworks!
+end
+
+target 'SwaarmSdkExample' do
+  use_frameworks!
+end

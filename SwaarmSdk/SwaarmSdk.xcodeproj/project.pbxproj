@@ -1,0 +1,959 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		310927A127E08B4D023BAD69 /* Pods_SwaarmSdkExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF3E8A73236971ED31D7A36 /* Pods_SwaarmSdkExample.framework */; };
+		951F22402391203C0031694A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F091B3EF4341AE4B261044 /* Logger.swift */; };
+		9527711823CDFEA7003390CD /* HttpApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9527711723CDFEA7003390CD /* HttpApiClient.swift */; };
+		9527711923CDFEA7003390CD /* HttpApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9527711723CDFEA7003390CD /* HttpApiClient.swift */; };
+		958FD152237405A000238593 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FD151237405A000238593 /* AppDelegate.swift */; };
+		958FD154237405A000238593 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FD153237405A000238593 /* SceneDelegate.swift */; };
+		958FD156237405A000238593 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FD155237405A000238593 /* ContentView.swift */; };
+		958FD158237405A100238593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958FD157237405A100238593 /* Assets.xcassets */; };
+		958FD15B237405A100238593 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958FD15A237405A100238593 /* Preview Assets.xcassets */; };
+		958FD15E237405A100238593 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 958FD15C237405A100238593 /* LaunchScreen.storyboard */; };
+		95EA519923A7C0A900A1C415 /* SwaarmSdkSimulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 95EA519723A7C0A900A1C415 /* SwaarmSdkSimulator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95EA519C23A7C0A900A1C415 /* SwaarmSdkSimulator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EA519523A7C0A900A1C415 /* SwaarmSdkSimulator.framework */; };
+		95EA51A223A7C0BD00A1C415 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0912373137300070D1F /* Log.swift */; };
+		95EA51A323A7C0BD00A1C415 /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0922373137300070D1F /* DateTime.swift */; };
+		95EA51A423A7C0BD00A1C415 /* JsonEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F0904CC2564D9825D619F3 /* JsonEncoder.swift */; };
+		95EA51A523A7C0BD00A1C415 /* SdkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F098D4BCA4DF50708F30F7 /* SdkConfiguration.swift */; };
+		95EA51A623A7C0BD00A1C415 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F091B3EF4341AE4B261044 /* Logger.swift */; };
+		95EA51A723A7C0BD00A1C415 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0A32373137300070D1F /* Network.swift */; };
+		95EA51A823A7C0BD00A1C415 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0A42373137300070D1F /* Reachability.swift */; };
+		95EA51A923A7C0BD00A1C415 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0942373137300070D1F /* Session.swift */; };
+		95EA51AA23A7C0BD00A1C415 /* SwaarmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0972373137300070D1F /* SwaarmConfig.swift */; };
+		95EA51AC23A7C0BD00A1C415 /* TrackerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95909F2B237D88620084CD1A /* TrackerState.swift */; };
+		95EA51B323A7C0BD00A1C415 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F09501A533D8C1465913B0 /* TrackingEvent.swift */; };
+		95EA51B423A7C0BD00A1C415 /* TrackingEventBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F098E2B41945672A7B808D /* TrackingEventBatch.swift */; };
+		95EA51BB23A7C0BD00A1C415 /* EventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0A12373137300070D1F /* EventPublisher.swift */; };
+		95EA51BC23A7C0BD00A1C415 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0A62373137300070D1F /* EventRepository.swift */; };
+		95EA51BD23A7C0BD00A1C415 /* SwaarmAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0932373137300070D1F /* SwaarmAnalytics.swift */; };
+		95EA51C323A8C4B800A1C415 /* SwaarmSdkSimulator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95EA519523A7C0A900A1C415 /* SwaarmSdkSimulator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		95EA51C523A8C7EB00A1C415 /* Sdk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95EA51C423A8C7EB00A1C415 /* Sdk.plist */; };
+		95FDB18F238BCFF200DC2DB4 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0942373137300070D1F /* Session.swift */; };
+		95FDB190238BCFF200DC2DB4 /* TrackerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95909F2B237D88620084CD1A /* TrackerState.swift */; };
+		95FDB191238BCFF200DC2DB4 /* SwaarmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0972373137300070D1F /* SwaarmConfig.swift */; };
+		95FDB192238BCFF200DC2DB4 /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0922373137300070D1F /* DateTime.swift */; };
+		95FDB194238BCFF200DC2DB4 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0A32373137300070D1F /* Network.swift */; };
+		95FDB195238BCFF200DC2DB4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0912373137300070D1F /* Log.swift */; };
+		95FDB196238BCFF200DC2DB4 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0A62373137300070D1F /* EventRepository.swift */; };
+		95FDB197238BCFF200DC2DB4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0A42373137300070D1F /* Reachability.swift */; };
+		95FDB198238BCFF200DC2DB4 /* SwaarmAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0932373137300070D1F /* SwaarmAnalytics.swift */; };
+		95FDB199238BCFF200DC2DB4 /* EventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0A12373137300070D1F /* EventPublisher.swift */; };
+		95FDB19A238BCFF200DC2DB4 /* JsonEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F0904CC2564D9825D619F3 /* JsonEncoder.swift */; };
+		95FDB19B238BCFF200DC2DB4 /* SdkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F098D4BCA4DF50708F30F7 /* SdkConfiguration.swift */; };
+		95FDB1A2238BCFF200DC2DB4 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F09501A533D8C1465913B0 /* TrackingEvent.swift */; };
+		95FDB1A3238BCFF200DC2DB4 /* TrackingEventBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F098E2B41945672A7B808D /* TrackingEventBatch.swift */; };
+		D983B797283E3DFE007574B4 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D983B796283E3DFE007574B4 /* Data+Gzip.swift */; };
+		D983B7A0283E4661007574B4 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D983B796283E3DFE007574B4 /* Data+Gzip.swift */; };
+		F4C6DF717B00F153D482D0F5 /* Pods_SwaarmSdkSimulator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CDC3269978D35AE7A4FD75 /* Pods_SwaarmSdkSimulator.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		95EA519A23A7C0A900A1C415 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95FAB07A2373132600070D1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 95EA519423A7C0A900A1C415;
+			remoteInfo = WeqSdkSimulator;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		958686C3239671FF0020C356 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		958FD16D23740BAE00238593 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				95EA51C323A8C4B800A1C415 /* SwaarmSdkSimulator.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0664C6B6273BC56B44E4135E /* Pods-SwaarmSdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdk.release.xcconfig"; path = "Target Support Files/Pods-SwaarmSdk/Pods-SwaarmSdk.release.xcconfig"; sourceTree = "<group>"; };
+		16CDC3269978D35AE7A4FD75 /* Pods_SwaarmSdkSimulator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaarmSdkSimulator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CF3E8A73236971ED31D7A36 /* Pods_SwaarmSdkExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaarmSdkExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4544D21E3D888E72E1DCA598 /* Pods-SwaarmSdkSimulator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdkSimulator.release.xcconfig"; path = "Target Support Files/Pods-SwaarmSdkSimulator/Pods-SwaarmSdkSimulator.release.xcconfig"; sourceTree = "<group>"; };
+		4D04C447F76DBC88B2E86241 /* Pods-SwaarmSdkExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdkExample.release.xcconfig"; path = "Target Support Files/Pods-SwaarmSdkExample/Pods-SwaarmSdkExample.release.xcconfig"; sourceTree = "<group>"; };
+		62F0904CC2564D9825D619F3 /* JsonEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonEncoder.swift; sourceTree = "<group>"; };
+		62F091B3EF4341AE4B261044 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		62F094A5F89B563243A2D158 /* Sdk.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Sdk.plist; sourceTree = "<group>"; };
+		62F09501A533D8C1465913B0 /* TrackingEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
+		62F098D4BCA4DF50708F30F7 /* SdkConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SdkConfiguration.swift; sourceTree = "<group>"; };
+		62F098E2B41945672A7B808D /* TrackingEventBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventBatch.swift; sourceTree = "<group>"; };
+		9527711723CDFEA7003390CD /* HttpApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpApiClient.swift; sourceTree = "<group>"; };
+		958FD14F237405A000238593 /* SwaarmSdkExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwaarmSdkExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		958FD151237405A000238593 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		958FD153237405A000238593 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		958FD155237405A000238593 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		958FD157237405A100238593 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		958FD15A237405A100238593 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		958FD15D237405A100238593 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		958FD15F237405A100238593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95909F2B237D88620084CD1A /* TrackerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerState.swift; sourceTree = "<group>"; };
+		95EA519523A7C0A900A1C415 /* SwaarmSdkSimulator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwaarmSdkSimulator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95EA519723A7C0A900A1C415 /* SwaarmSdkSimulator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwaarmSdkSimulator.h; sourceTree = "<group>"; };
+		95EA519823A7C0A900A1C415 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95EA51C423A8C7EB00A1C415 /* Sdk.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Sdk.plist; sourceTree = "<group>"; };
+		95FAB0872373132600070D1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95FAB0912373137300070D1F /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		95FAB0922373137300070D1F /* DateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
+		95FAB0932373137300070D1F /* SwaarmAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwaarmAnalytics.swift; sourceTree = "<group>"; };
+		95FAB0942373137300070D1F /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		95FAB0972373137300070D1F /* SwaarmConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwaarmConfig.swift; sourceTree = "<group>"; };
+		95FAB0A12373137300070D1F /* EventPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPublisher.swift; sourceTree = "<group>"; };
+		95FAB0A32373137300070D1F /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		95FAB0A42373137300070D1F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		95FAB0A62373137300070D1F /* EventRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
+		95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwaarmSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D983B796283E3DFE007574B4 /* Data+Gzip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Gzip.swift"; sourceTree = "<group>"; };
+		D983B7A3283E4898007574B4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E698C9A839141C8413F131E1 /* Pods-SwaarmSdkExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdkExample.debug.xcconfig"; path = "Target Support Files/Pods-SwaarmSdkExample/Pods-SwaarmSdkExample.debug.xcconfig"; sourceTree = "<group>"; };
+		FA718D48880731C7D8DCE01C /* Pods-SwaarmSdkSimulator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdkSimulator.debug.xcconfig"; path = "Target Support Files/Pods-SwaarmSdkSimulator/Pods-SwaarmSdkSimulator.debug.xcconfig"; sourceTree = "<group>"; };
+		FE8710841593B9A10724272E /* Pods-SwaarmSdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdk.debug.xcconfig"; path = "Target Support Files/Pods-SwaarmSdk/Pods-SwaarmSdk.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		958FD14C237405A000238593 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95EA519C23A7C0A900A1C415 /* SwaarmSdkSimulator.framework in Frameworks */,
+				310927A127E08B4D023BAD69 /* Pods_SwaarmSdkExample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95EA519223A7C0A900A1C415 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4C6DF717B00F153D482D0F5 /* Pods_SwaarmSdkSimulator.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95FDB1AA238BCFF200DC2DB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6FC7FB1938099C5C715D51F1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FE8710841593B9A10724272E /* Pods-SwaarmSdk.debug.xcconfig */,
+				0664C6B6273BC56B44E4135E /* Pods-SwaarmSdk.release.xcconfig */,
+				E698C9A839141C8413F131E1 /* Pods-SwaarmSdkExample.debug.xcconfig */,
+				4D04C447F76DBC88B2E86241 /* Pods-SwaarmSdkExample.release.xcconfig */,
+				FA718D48880731C7D8DCE01C /* Pods-SwaarmSdkSimulator.debug.xcconfig */,
+				4544D21E3D888E72E1DCA598 /* Pods-SwaarmSdkSimulator.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9527711E23CE066F003390CD /* trackingevent */ = {
+			isa = PBXGroup;
+			children = (
+				9527711F23CE067A003390CD /* model */,
+				95FAB0A12373137300070D1F /* EventPublisher.swift */,
+				95FAB0A62373137300070D1F /* EventRepository.swift */,
+			);
+			path = trackingevent;
+			sourceTree = "<group>";
+		};
+		9527711F23CE067A003390CD /* model */ = {
+			isa = PBXGroup;
+			children = (
+				62F09501A533D8C1465913B0 /* TrackingEvent.swift */,
+				62F098E2B41945672A7B808D /* TrackingEventBatch.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		9527712023CE06D6003390CD /* model */ = {
+			isa = PBXGroup;
+			children = (
+				62F098D4BCA4DF50708F30F7 /* SdkConfiguration.swift */,
+				95FAB0972373137300070D1F /* SwaarmConfig.swift */,
+				95909F2B237D88620084CD1A /* TrackerState.swift */,
+				95FAB0942373137300070D1F /* Session.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		958FD150237405A000238593 /* SwaarmSdkExample */ = {
+			isa = PBXGroup;
+			children = (
+				958FD151237405A000238593 /* AppDelegate.swift */,
+				958FD153237405A000238593 /* SceneDelegate.swift */,
+				958FD155237405A000238593 /* ContentView.swift */,
+				958FD157237405A100238593 /* Assets.xcassets */,
+				958FD15C237405A100238593 /* LaunchScreen.storyboard */,
+				958FD15F237405A100238593 /* Info.plist */,
+				958FD159237405A100238593 /* Preview Content */,
+			);
+			path = SwaarmSdkExample;
+			sourceTree = "<group>";
+		};
+		958FD159237405A100238593 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				958FD15A237405A100238593 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		95EA519623A7C0A900A1C415 /* SwaarmSdkSimulator */ = {
+			isa = PBXGroup;
+			children = (
+				95EA519723A7C0A900A1C415 /* SwaarmSdkSimulator.h */,
+				95EA519823A7C0A900A1C415 /* Info.plist */,
+				95EA51C423A8C7EB00A1C415 /* Sdk.plist */,
+			);
+			path = SwaarmSdkSimulator;
+			sourceTree = "<group>";
+		};
+		95FAB0792373132600070D1F = {
+			isa = PBXGroup;
+			children = (
+				F55ECE4A1ED9F3373DB308E0 /* Frameworks */,
+				6FC7FB1938099C5C715D51F1 /* Pods */,
+				95FAB0842373132600070D1F /* Products */,
+				95FAB0852373132600070D1F /* SwaarmSdk */,
+				958FD150237405A000238593 /* SwaarmSdkExample */,
+				95EA519623A7C0A900A1C415 /* SwaarmSdkSimulator */,
+			);
+			sourceTree = "<group>";
+		};
+		95FAB0842373132600070D1F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				958FD14F237405A000238593 /* SwaarmSdkExample.app */,
+				95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */,
+				95EA519523A7C0A900A1C415 /* SwaarmSdkSimulator.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		95FAB0852373132600070D1F /* SwaarmSdk */ = {
+			isa = PBXGroup;
+			children = (
+				95FAB0902373137300070D1F /* common */,
+				95FAB0872373132600070D1F /* Info.plist */,
+				62F094A5F89B563243A2D158 /* Sdk.plist */,
+				9527711E23CE066F003390CD /* trackingevent */,
+				95FAB0932373137300070D1F /* SwaarmAnalytics.swift */,
+			);
+			path = SwaarmSdk;
+			sourceTree = "<group>";
+		};
+		95FAB0902373137300070D1F /* common */ = {
+			isa = PBXGroup;
+			children = (
+				95FAB0A22373137300070D1F /* device */,
+				9527712023CE06D6003390CD /* model */,
+				95FAB0912373137300070D1F /* Log.swift */,
+				D983B796283E3DFE007574B4 /* Data+Gzip.swift */,
+				95FAB0922373137300070D1F /* DateTime.swift */,
+				62F0904CC2564D9825D619F3 /* JsonEncoder.swift */,
+				62F091B3EF4341AE4B261044 /* Logger.swift */,
+				9527711723CDFEA7003390CD /* HttpApiClient.swift */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		95FAB0A22373137300070D1F /* device */ = {
+			isa = PBXGroup;
+			children = (
+				95FAB0A32373137300070D1F /* Network.swift */,
+				95FAB0A42373137300070D1F /* Reachability.swift */,
+			);
+			path = device;
+			sourceTree = "<group>";
+		};
+		F55ECE4A1ED9F3373DB308E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D983B7A3283E4898007574B4 /* libz.tbd */,
+				1CF3E8A73236971ED31D7A36 /* Pods_SwaarmSdkExample.framework */,
+				16CDC3269978D35AE7A4FD75 /* Pods_SwaarmSdkSimulator.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		95EA519023A7C0A900A1C415 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95EA519923A7C0A900A1C415 /* SwaarmSdkSimulator.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95FDB18B238BCFF200DC2DB4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		958FD14E237405A000238593 /* SwaarmSdkExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 958FD162237405A100238593 /* Build configuration list for PBXNativeTarget "SwaarmSdkExample" */;
+			buildPhases = (
+				6735918877D96745F3B3145E /* [CP] Check Pods Manifest.lock */,
+				958FD14B237405A000238593 /* Sources */,
+				958FD14C237405A000238593 /* Frameworks */,
+				958FD14D237405A000238593 /* Resources */,
+				958FD16D23740BAE00238593 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				95EA519B23A7C0A900A1C415 /* PBXTargetDependency */,
+			);
+			name = SwaarmSdkExample;
+			productName = WeqSdkExample;
+			productReference = 958FD14F237405A000238593 /* SwaarmSdkExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		95EA519423A7C0A900A1C415 /* SwaarmSdkSimulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95EA51A023A7C0A900A1C415 /* Build configuration list for PBXNativeTarget "SwaarmSdkSimulator" */;
+			buildPhases = (
+				28869EE86596A6DEC2526DAE /* [CP] Check Pods Manifest.lock */,
+				95EA519023A7C0A900A1C415 /* Headers */,
+				95EA519123A7C0A900A1C415 /* Sources */,
+				95EA519223A7C0A900A1C415 /* Frameworks */,
+				95EA519323A7C0A900A1C415 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwaarmSdkSimulator;
+			productName = WeqSdkSimulator;
+			productReference = 95EA519523A7C0A900A1C415 /* SwaarmSdkSimulator.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		95FDB18A238BCFF200DC2DB4 /* SwaarmSdk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95FDB1B1238BCFF200DC2DB4 /* Build configuration list for PBXNativeTarget "SwaarmSdk" */;
+			buildPhases = (
+				CA847B602897510A66002F32 /* [CP] Check Pods Manifest.lock */,
+				95FDB18B238BCFF200DC2DB4 /* Headers */,
+				95FDB18D238BCFF200DC2DB4 /* Sources */,
+				95FDB1AA238BCFF200DC2DB4 /* Frameworks */,
+				958686C3239671FF0020C356 /* Embed Frameworks */,
+				9595C25723A2616A00269CAE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwaarmSdk;
+			productName = WeqSdk;
+			productReference = 95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		95FAB07A2373132600070D1F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1340;
+				ORGANIZATIONNAME = "Aurimas Lickus";
+				TargetAttributes = {
+					958FD14E237405A000238593 = {
+						CreatedOnToolsVersion = 11.2;
+					};
+					95EA519423A7C0A900A1C415 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 95FAB07D2373132600070D1F /* Build configuration list for PBXProject "SwaarmSdk" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 95FAB0792373132600070D1F;
+			productRefGroup = 95FAB0842373132600070D1F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				95FDB18A238BCFF200DC2DB4 /* SwaarmSdk */,
+				95EA519423A7C0A900A1C415 /* SwaarmSdkSimulator */,
+				958FD14E237405A000238593 /* SwaarmSdkExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		958FD14D237405A000238593 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				958FD15E237405A100238593 /* LaunchScreen.storyboard in Resources */,
+				958FD15B237405A100238593 /* Preview Assets.xcassets in Resources */,
+				958FD158237405A100238593 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9595C25723A2616A00269CAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95EA519323A7C0A900A1C415 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95EA51C523A8C7EB00A1C415 /* Sdk.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		28869EE86596A6DEC2526DAE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwaarmSdkSimulator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6735918877D96745F3B3145E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwaarmSdkExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA847B602897510A66002F32 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwaarmSdk-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		958FD14B237405A000238593 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				958FD152237405A000238593 /* AppDelegate.swift in Sources */,
+				958FD154237405A000238593 /* SceneDelegate.swift in Sources */,
+				958FD156237405A000238593 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95EA519123A7C0A900A1C415 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95EA51A223A7C0BD00A1C415 /* Log.swift in Sources */,
+				95EA51A323A7C0BD00A1C415 /* DateTime.swift in Sources */,
+				95EA51A423A7C0BD00A1C415 /* JsonEncoder.swift in Sources */,
+				95EA51A523A7C0BD00A1C415 /* SdkConfiguration.swift in Sources */,
+				95EA51A623A7C0BD00A1C415 /* Logger.swift in Sources */,
+				D983B7A0283E4661007574B4 /* Data+Gzip.swift in Sources */,
+				95EA51A723A7C0BD00A1C415 /* Network.swift in Sources */,
+				95EA51A823A7C0BD00A1C415 /* Reachability.swift in Sources */,
+				95EA51A923A7C0BD00A1C415 /* Session.swift in Sources */,
+				9527711923CDFEA7003390CD /* HttpApiClient.swift in Sources */,
+				95EA51AA23A7C0BD00A1C415 /* SwaarmConfig.swift in Sources */,
+				95EA51AC23A7C0BD00A1C415 /* TrackerState.swift in Sources */,
+				95EA51B323A7C0BD00A1C415 /* TrackingEvent.swift in Sources */,
+				95EA51B423A7C0BD00A1C415 /* TrackingEventBatch.swift in Sources */,
+				95EA51BB23A7C0BD00A1C415 /* EventPublisher.swift in Sources */,
+				95EA51BC23A7C0BD00A1C415 /* EventRepository.swift in Sources */,
+				95EA51BD23A7C0BD00A1C415 /* SwaarmAnalytics.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95FDB18D238BCFF200DC2DB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				951F22402391203C0031694A /* Logger.swift in Sources */,
+				95FDB18F238BCFF200DC2DB4 /* Session.swift in Sources */,
+				95FDB190238BCFF200DC2DB4 /* TrackerState.swift in Sources */,
+				95FDB191238BCFF200DC2DB4 /* SwaarmConfig.swift in Sources */,
+				95FDB192238BCFF200DC2DB4 /* DateTime.swift in Sources */,
+				D983B797283E3DFE007574B4 /* Data+Gzip.swift in Sources */,
+				95FDB194238BCFF200DC2DB4 /* Network.swift in Sources */,
+				95FDB195238BCFF200DC2DB4 /* Log.swift in Sources */,
+				95FDB196238BCFF200DC2DB4 /* EventRepository.swift in Sources */,
+				95FDB197238BCFF200DC2DB4 /* Reachability.swift in Sources */,
+				95FDB198238BCFF200DC2DB4 /* SwaarmAnalytics.swift in Sources */,
+				95FDB199238BCFF200DC2DB4 /* EventPublisher.swift in Sources */,
+				95FDB19A238BCFF200DC2DB4 /* JsonEncoder.swift in Sources */,
+				95FDB19B238BCFF200DC2DB4 /* SdkConfiguration.swift in Sources */,
+				9527711823CDFEA7003390CD /* HttpApiClient.swift in Sources */,
+				95FDB1A2238BCFF200DC2DB4 /* TrackingEvent.swift in Sources */,
+				95FDB1A3238BCFF200DC2DB4 /* TrackingEventBatch.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		95EA519B23A7C0A900A1C415 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 95EA519423A7C0A900A1C415 /* SwaarmSdkSimulator */;
+			targetProxy = 95EA519A23A7C0A900A1C415 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		958FD15C237405A100238593 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				958FD15D237405A100238593 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		958FD160237405A100238593 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E698C9A839141C8413F131E1 /* Pods-SwaarmSdkExample.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"SwaarmSdkExample/Preview Content\"";
+				DEVELOPMENT_TEAM = 2TBM8N58NW;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SwaarmSdkExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swaarm.SwaarmSdkExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		958FD161237405A100238593 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D04C447F76DBC88B2E86241 /* Pods-SwaarmSdkExample.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"SwaarmSdkExample/Preview Content\"";
+				DEVELOPMENT_TEAM = 2TBM8N58NW;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SwaarmSdkExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swaarm.SwaarmSdkExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		95EA519E23A7C0A900A1C415 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA718D48880731C7D8DCE01C /* Pods-SwaarmSdkSimulator.debug.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2TBM8N58NW;
+				DSTROOT = "/tmp/$(PROJECT_NAME)_simulator.dst";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwaarmSdkSimulator/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swaarm.SwaarmSdkSimulator;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		95EA519F23A7C0A900A1C415 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4544D21E3D888E72E1DCA598 /* Pods-SwaarmSdkSimulator.release.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DSTROOT = "/tmp/$(PROJECT_NAME)_simulator.dst";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwaarmSdkSimulator/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swaarm.SwaarmSdk;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		95FAB0892373132600070D1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		95FAB08A2373132600070D1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		95FDB1B2238BCFF200DC2DB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE8710841593B9A10724272E /* Pods-SwaarmSdk.debug.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = 2TBM8N58NW;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Libraries/ios",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SwaarmSdk-ios-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SwaarmSdk/gzip",
+				);
+				MARKETING_VERSION = 0.0.1;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swaarm.SwaarmSdk;
+				PRODUCT_NAME = SwaarmSdk;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		95FDB1B3238BCFF200DC2DB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0664C6B6273BC56B44E4135E /* Pods-SwaarmSdk.release.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = 2TBM8N58NW;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Libraries/ios",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SwaarmSdk-ios-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SwaarmSdk/gzip",
+				);
+				MARKETING_VERSION = 0.0.1;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swaarm.SwaarmSdk;
+				PRODUCT_NAME = SwaarmSdk;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		958FD162237405A100238593 /* Build configuration list for PBXNativeTarget "SwaarmSdkExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				958FD160237405A100238593 /* Debug */,
+				958FD161237405A100238593 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95EA51A023A7C0A900A1C415 /* Build configuration list for PBXNativeTarget "SwaarmSdkSimulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95EA519E23A7C0A900A1C415 /* Debug */,
+				95EA519F23A7C0A900A1C415 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95FAB07D2373132600070D1F /* Build configuration list for PBXProject "SwaarmSdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95FAB0892373132600070D1F /* Debug */,
+				95FAB08A2373132600070D1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95FDB1B1238BCFF200DC2DB4 /* Build configuration list for PBXNativeTarget "SwaarmSdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95FDB1B2238BCFF200DC2DB4 /* Debug */,
+				95FDB1B3238BCFF200DC2DB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 95FAB07A2373132600070D1F /* Project object */;
+}
