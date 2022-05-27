@@ -1,9 +1,7 @@
 //
 //  SceneDelegate.swift
-//  WeqSdkExample
+//  SwaarmSdkExample
 //
-//  Created by Aurimas Lickus on 07.11.19.
-//  Copyright © 2019 Aurimas Lickus. All rights reserved.
 //
 
 import UIKit

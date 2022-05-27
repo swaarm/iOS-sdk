@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |spec|
   spec.name            = "SwaarmSdk"
-  spec.version         = "0.2.0"
+  spec.version         = "0.0.16"
   spec.summary         = "Swaarm SDK"
-  spec.description     = <<-DE::qSC
+  spec.description     = <<-DESC
       SDK provides API to send Swaarm tracking events.
                    DESC
   spec.homepage        = "https://github.com/swaarm/ios-sdk"
@@ -24,8 +24,7 @@ Pod::Spec.new do |spec|
   spec.default_subspec = "SwaarmSdk"
 
   spec.subspec 'SwaarmSdk' do |sdk|
-    sdk.source_files   = 'SwaarmSdk/SwaarmSdk/**/*.{h,m.,swift}'
-    sdk.resources    = 'SwaarmSdk/SwaarmSdk/Sdk.plist'
-    sdk.dependency 'GzipSwift'
+    sdk.source_files   = 'SwaarmSdk/SwaarmSdk/**/*.{h,m.,swift}', 'SwaarmSdk/SwiftCollections/**/*.{h,m.,swift}'
+    sdk.resources    = 'SwaarmSdk/SwaarmSdk/SwaarmSdkParams.plist'
   end
 end

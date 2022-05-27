@@ -1,13 +1,13 @@
 on:
   push:
     tags:
-      - v*
+      - '*'
 
 name: Build framework
 jobs:
   static:
     name: Build static SDK
-    runs-on: macOS-latest
+    runs-on: macOS-12
     steps:
       - uses: actions/checkout@v2
       - name: Build

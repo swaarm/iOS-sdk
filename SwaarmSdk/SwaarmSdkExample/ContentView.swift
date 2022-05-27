@@ -1,10 +1,10 @@
 import SwiftUI
-import SwaarmSdkSimulator
+import SwaarmSdk
 
 struct ContentView: View {
     var body: some View {
 
-        SwaarmAnalytics.configure(config: SwaarmConfig(appToken: "123456", eventIngressHostname: "https://track.saturn.swaarm-clients.com"))
+        SwaarmAnalytics.configure(config: SwaarmConfig(appToken: "123456", eventIngressHostname: "https://tracking-domain.com"))
         SwaarmAnalytics.debug(enable: true)
         
         return Button(action: {
