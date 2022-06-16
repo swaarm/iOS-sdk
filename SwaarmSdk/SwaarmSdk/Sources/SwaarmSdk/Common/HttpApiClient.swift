@@ -1,4 +1,3 @@
-
 import Foundation
 import os.log
 
@@ -6,10 +5,13 @@ public class HttpApiClient {
     
     private let trackerState: TrackerState
     private let urlSession: URLSession
+    private let ua: String
     
-    init(trackerState: TrackerState, urlSession: URLSession = .shared) {
+    init(trackerState: TrackerState, urlSession: URLSession = .shared, ua: String) {
         self.trackerState = trackerState
         self.urlSession = urlSession
+        self.ua = ua
+
     }
     
     public func sendPostBlocking(jsonRequest: String, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
@@ -39,6 +41,7 @@ public class HttpApiClient {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("gzip", forHTTPHeaderField: "Content-Encoding")
         request.setValue("Bearer " + self.trackerState.weqConfig.appToken, forHTTPHeaderField: "Authorization")
+        request.setValue(self.ua, forHTTPHeaderField: "User-Agent")
         request.httpMethod = "POST"
         request.httpBody = try! (jsonRequest.data(using: String.Encoding.utf8)?.gzipped())!
         

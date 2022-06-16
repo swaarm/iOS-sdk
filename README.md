@@ -4,7 +4,7 @@ This is iOS SDK For Swaarm tracker. It provides API to send data to Swaarm track
 
 The SDK is uses Swift and built with .framework support. Can be installed as Cocoapods Pod.
 
-For example to load library using Cocoads:
+For example to load library using Cocoapods:
 
 ```
 platform :ios, '10.0'

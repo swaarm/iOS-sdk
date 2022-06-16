@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import AdSupport
 import os.log
+import WebKit
 
 public class SwaarmAnalytics {
     
@@ -20,6 +21,7 @@ public class SwaarmAnalytics {
             Logger.debug("App token is not set")
             return;
         }
+        let ua = WKWebView().value(forKey: "userAgent") as! String? ?? ""
         
         apiQueue.async(execute: {
             if (self.isInitialized) {
@@ -28,7 +30,8 @@ public class SwaarmAnalytics {
             }
             
             self.trackerState = TrackerState(config: config, sdkConfig: sdkConfig, session: Session())
-            let httpApiReader = HttpApiClient(trackerState: self.trackerState!, urlSession: urlSession)
+
+            let httpApiReader = HttpApiClient(trackerState: self.trackerState!, urlSession: urlSession, ua: ua)
 
             self.eventRepository = EventRepository(trackerState: self.trackerState!)
             
@@ -40,8 +43,13 @@ public class SwaarmAnalytics {
             
             self.isInitialized = true;
              
-            SwaarmAnalytics.event(typeId: nil, aggregatedValue: 0.0)
-        })
+
+            if UserDefaults.standard.object(forKey: "firstStart") as? Bool ?? false {
+                SwaarmAnalytics.event(typeId: nil, aggregatedValue: 0.0)
+            } else {
+                UserDefaults.standard.set(true, forKey: "firstStart")
+            }
+            })
     }
     
     public static func event(typeId: String?, aggregatedValue: Double, customValue: String) {
