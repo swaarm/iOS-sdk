@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68D136D628994DE200A68FEC /* SwaarmSdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D136D528994DE200A68FEC /* SwaarmSdkTests.swift */; };
+		68D136D728994DE200A68FEC /* SwaarmSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */; platformFilter = ios; };
 		951F22402391203C0031694A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F091B3EF4341AE4B261044 /* Logger.swift */; };
 		9527711823CDFEA7003390CD /* HttpApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9527711723CDFEA7003390CD /* HttpApiClient.swift */; };
 		958FD152237405A000238593 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FD151237405A000238593 /* AppDelegate.swift */; };
@@ -86,6 +88,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		68D136D828994DE200A68FEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95FAB07A2373132600070D1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 95FDB18A238BCFF200DC2DB4;
+			remoteInfo = SwaarmSdk;
+		};
 		D983B7A8284100D0007574B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 95FAB07A2373132600070D1F /* Project object */;
@@ -126,6 +135,8 @@
 		62F09501A533D8C1465913B0 /* TrackingEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
 		62F098D4BCA4DF50708F30F7 /* SdkConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SdkConfiguration.swift; sourceTree = "<group>"; };
 		62F098E2B41945672A7B808D /* TrackingEventBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventBatch.swift; sourceTree = "<group>"; };
+		68D136D328994DE200A68FEC /* SwaarmSdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwaarmSdkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68D136D528994DE200A68FEC /* SwaarmSdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwaarmSdkTests.swift; sourceTree = "<group>"; };
 		9527711723CDFEA7003390CD /* HttpApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpApiClient.swift; sourceTree = "<group>"; };
 		958FD14F237405A000238593 /* SwaarmSdkExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwaarmSdkExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958FD151237405A000238593 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -223,6 +234,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		68D136D028994DE200A68FEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68D136D728994DE200A68FEC /* SwaarmSdk.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		958FD14C237405A000238593 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +260,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		68D136D428994DE200A68FEC /* SwaarmSdkTests */ = {
+			isa = PBXGroup;
+			children = (
+				68D136D528994DE200A68FEC /* SwaarmSdkTests.swift */,
+			);
+			path = SwaarmSdkTests;
+			sourceTree = "<group>";
+		};
 		9527711E23CE066F003390CD /* Trackingevent */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				D98BAB7728449275004D9CD7 /* SwiftCollections */,
+				68D136D428994DE200A68FEC /* SwaarmSdkTests */,
 				F55ECE4A1ED9F3373DB308E0 /* Frameworks */,
 				95FAB0842373132600070D1F /* Products */,
 				95FAB0852373132600070D1F /* SwaarmSdk */,
@@ -310,6 +338,7 @@
 			children = (
 				958FD14F237405A000238593 /* SwaarmSdkExample.app */,
 				95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */,
+				68D136D328994DE200A68FEC /* SwaarmSdkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -520,6 +549,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		68D136D228994DE200A68FEC /* SwaarmSdkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68D136DC28994DE200A68FEC /* Build configuration list for PBXNativeTarget "SwaarmSdkTests" */;
+			buildPhases = (
+				68D136CF28994DE200A68FEC /* Sources */,
+				68D136D028994DE200A68FEC /* Frameworks */,
+				68D136D128994DE200A68FEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68D136D928994DE200A68FEC /* PBXTargetDependency */,
+			);
+			name = SwaarmSdkTests;
+			productName = SwaarmSdkTests;
+			productReference = 68D136D328994DE200A68FEC /* SwaarmSdkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		958FD14E237405A000238593 /* SwaarmSdkExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 958FD162237405A100238593 /* Build configuration list for PBXNativeTarget "SwaarmSdkExample" */;
@@ -564,10 +611,13 @@
 		95FAB07A2373132600070D1F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = "Aurimas Lickus";
 				TargetAttributes = {
+					68D136D228994DE200A68FEC = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
 					958FD14E237405A000238593 = {
 						CreatedOnToolsVersion = 11.2;
 					};
@@ -588,11 +638,19 @@
 			targets = (
 				95FDB18A238BCFF200DC2DB4 /* SwaarmSdk */,
 				958FD14E237405A000238593 /* SwaarmSdkExample */,
+				68D136D228994DE200A68FEC /* SwaarmSdkTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		68D136D128994DE200A68FEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		958FD14D237405A000238593 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -614,6 +672,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		68D136CF28994DE200A68FEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68D136D628994DE200A68FEC /* SwaarmSdkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		958FD14B237405A000238593 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -701,6 +767,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		68D136D928994DE200A68FEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 95FDB18A238BCFF200DC2DB4 /* SwaarmSdk */;
+			targetProxy = 68D136D828994DE200A68FEC /* PBXContainerItemProxy */;
+		};
 		D983B7A9284100D0007574B4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -721,6 +793,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		68D136DA28994DE200A68FEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NQQW8B6C76;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swaarm.SwaarmSdkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		68D136DB28994DE200A68FEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NQQW8B6C76;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swaarm.SwaarmSdkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		958FD160237405A100238593 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -981,6 +1089,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		68D136DC28994DE200A68FEC /* Build configuration list for PBXNativeTarget "SwaarmSdkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68D136DA28994DE200A68FEC /* Debug */,
+				68D136DB28994DE200A68FEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		958FD162237405A100238593 /* Build configuration list for PBXNativeTarget "SwaarmSdkExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

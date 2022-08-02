@@ -36,8 +36,9 @@ class EventPublisher {
             if self.shouldSkip() == true {
                 return
             }
-            
+
             let events = self.repository.getEvents(limit: self.trackerState.sdkConfig.getEventFlushBatchSize())
+
             if events.count == 0 {
                 return
             }
@@ -48,7 +49,7 @@ class EventPublisher {
                 return
             }
 
-            Logger.debug(String(format:"Sending batch of '%d' events", events.count))
+            Logger.debug("Sending events \(jsonRequest)")
             
             self.httpApiReader.sendPostBlocking(
                 jsonRequest: jsonRequest,
