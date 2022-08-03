@@ -4,8 +4,7 @@ import SwaarmSdk
 struct ContentView: View {
     var body: some View {
 
-        SwaarmAnalytics.configure(config: SwaarmConfig(appToken: "123456", eventIngressHostname: "https://tracking-domain.com"))
-        SwaarmAnalytics.debug(enable: true)
+        SwaarmAnalytics.configure(config: SwaarmConfig(appToken: "123456", eventIngressHostname: "https://tracking-domain.com"), debug: true)
         
         return Button(action: {
             SwaarmAnalytics.event(typeId: "2", aggregatedValue: 123, customValue: "cs")

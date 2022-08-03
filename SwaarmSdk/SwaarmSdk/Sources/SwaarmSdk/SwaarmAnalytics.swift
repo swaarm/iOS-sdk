@@ -11,11 +11,11 @@ public class SwaarmAnalytics {
     private static var urlSession: URLSession = .shared
     private static var apiQueue: DispatchQueue = .init(label: "swaarm-api")
 
-    public static func configure(config: SwaarmConfig) {
-        configure(config: config, sdkConfig: SdkConfiguration())
-    }
-
-    public static func configure(config: SwaarmConfig, sdkConfig: SdkConfiguration) {
+    public static func configure(config: SwaarmConfig, debug: Bool = false) {
+       let sdkConfig = SdkConfiguration()
+        if debug {
+            self.debug(enable: debug)
+        }
         if !config.isAppTokenValid() {
             Logger.debug("App token is not set")
             return

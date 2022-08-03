@@ -28,16 +28,18 @@ Import module:
 import SwaarmSdk
 ```
 
-Create configuration object with swaarm event ingress hostname and access token:
+Create configuration object with swaarm event ingress hostname and access token.
+This should be done in the startup method of your app, e.g. willFinishLaunchingWithOptions or didFinishLaunchingWithOptions, as it automatically fires the `__open` event and - on first start - the intial event.:
 ```
 SwaarmAnalytics.configure(config: SwaarmConfig(appToken: "123456", eventIngressHostname: "https://tracker-domain.com"))
   
-SwaarmAnalytics.debug(enable: true) //Will print some debug information to console
+SwaarmAnalytics.configure(config: SwaarmConfig(appToken: "123456", eventIngressHostname: "https://tracker-domain.com", debug: true))
 ```
 
-Send event:
+Send event (all parameters are optional):
 ```
 SwaarmAnalytics.event("event_type_id", 123D, "custom value")
+SwaarmAnalytics.event(typeId: "event_type_id", aggregatedValue: 123D, customValue: "custom value", revenue: 12.1)
 ```
 
 Display details about tracking: `SwaarmAnalytics.debug(true)`
