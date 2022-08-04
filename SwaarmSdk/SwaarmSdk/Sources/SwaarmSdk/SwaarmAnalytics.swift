@@ -12,11 +12,11 @@ public class SwaarmAnalytics {
     private static var apiQueue: DispatchQueue = .init(label: "swaarm-api")
 
     public static func configure(config: SwaarmConfig? = nil, host: String? = nil, token: String? = nil, debug: Bool = false) {
-        var swaarmConfig
+        var swaarmConfig: SwaarmConfig
         if config == nil {
             swaarmConfig = SwaarmConfig(appToken: token!, eventIngressHostname: host!)
         } else {
-            swaarmConfig = config
+            swaarmConfig = config!
         }
         let sdkConfig = SdkConfiguration()
         if debug {
