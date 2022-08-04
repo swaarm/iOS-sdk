@@ -11,12 +11,15 @@ public class SwaarmAnalytics {
     private static var urlSession: URLSession = .shared
     private static var apiQueue: DispatchQueue = .init(label: "swaarm-api")
 
-    public static func configure(config: SwaarmConfig, debug: Bool = false) {
-       let sdkConfig = SdkConfiguration()
+    public static func configure(config: SwaarmConfig? = nil, host: String? = nil, token: String? = nil, debug: Bool = false) {
+        if config == nil {
+            let config = SwaarmConfig(appToken: token!, eventIngressHostname: host!)
+        }
+        let sdkConfig = SdkConfiguration()
         if debug {
             self.debug(enable: debug)
         }
-        if !config.isAppTokenValid() {
+        if !config!.isAppTokenValid() {
             Logger.debug("App token is not set")
             return
         }
@@ -28,7 +31,7 @@ public class SwaarmAnalytics {
                 return
             }
 
-            self.trackerState = TrackerState(config: config, sdkConfig: sdkConfig, session: Session())
+            self.trackerState = TrackerState(config: config!, sdkConfig: sdkConfig, session: Session())
 
             let httpApiReader = HttpApiClient(trackerState: self.trackerState!, urlSession: urlSession, ua: ua)
 
