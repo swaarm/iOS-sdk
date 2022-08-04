@@ -47,11 +47,9 @@ public class SwaarmAnalytics {
             ).start()
 
             self.isInitialized = true
-
-            if UserDefaults.standard.object(forKey: "firstStart") as? Bool ?? false {
+            if !(UserDefaults.standard.object(forKey: "SwaarmSdk.initEventSent") as? Bool ?? false) {
                 SwaarmAnalytics.event()
-            } else {
-                UserDefaults.standard.set(true, forKey: "firstStart")
+                UserDefaults.standard.set(true, forKey: "SwaarmSdk.initEventSent")
             }
             SwaarmAnalytics.event(typeId: "__open")
         }
