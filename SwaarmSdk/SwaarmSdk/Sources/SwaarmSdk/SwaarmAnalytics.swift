@@ -11,7 +11,7 @@ public class SwaarmAnalytics {
     private static var urlSession: URLSession = .shared
     private static var apiQueue: DispatchQueue = .init(label: "swaarm-api")
 
-    public static func configure(config: SwaarmConfig? = nil, host: String? = nil, token: String? = nil, debug: Bool = false) {
+    public static func configure(config: SwaarmConfig? = nil, token: String? = nil, host: String? = nil, debug: Bool = false) {
         var swaarmConfig: SwaarmConfig
         if config == nil {
             swaarmConfig = SwaarmConfig(appToken: token!, eventIngressHostname: host!)

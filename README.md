@@ -29,20 +29,20 @@ import SwaarmSdk
 ```
 
 Create configuration object with swaarm event ingress hostname and access token.
-This should be done in the startup method of your app, e.g. willFinishLaunchingWithOptions or didFinishLaunchingWithOptions, as it automatically fires the `__open` event and - on first start - the intial event.:
+This should be done in the startup method of your app, e.g. the init of your swiftui app, or the willFinishLaunchingWithOptions or didFinishLaunchingWithOptions, as it automatically fires the `__open` event and - on first start - the intial event.:
 ```
-SwaarmAnalytics.configure(config: SwaarmConfig(appToken: "123456", eventIngressHostname: "https://tracker-domain.com"))
+SwaarmAnalytics.configure(token: "123456", host: "https://tracker-domain.com")
   
-SwaarmAnalytics.configure(config: SwaarmConfig(appToken: "123456", eventIngressHostname: "https://tracker-domain.com", debug: true))
+SwaarmAnalytics.configure(token: "123456", host: "https://tracker-domain.com", debug: true)
 ```
 
 Send event (all parameters are optional):
 ```
 SwaarmAnalytics.event("event_type_id", 123D, "custom value")
 SwaarmAnalytics.event(typeId: "event_type_id", aggregatedValue: 123D, customValue: "custom value", revenue: 12.1)
+SwaarmAnalytics.event(typeId: "buy_sword", revenue: 12.1)
 ```
 
-Display details about tracking: `SwaarmAnalytics.debug(true)`
 
 Disable tracking at runtime: `SwaarmAnalytics.disable()`
 
