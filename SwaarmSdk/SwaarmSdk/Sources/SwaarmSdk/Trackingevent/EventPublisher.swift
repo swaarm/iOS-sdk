@@ -37,8 +37,7 @@ class EventPublisher {
                 return
             }
 
-            let trackingEventBatch = self.createTrackingEventBatch(events)
-            guard let jsonRequest = JsonEncoder.encode(trackingEventBatch) else {
+            guard let jsonRequest = JsonEncoder.encode(TrackingEventBatch(events: events, time: DateTime.now())) else {
                 Logger.debug("Unable to decode event data, skipping")
                 return
             }
@@ -64,10 +63,6 @@ class EventPublisher {
     
     public func stop() {
         timer.suspend()
-    }
-    
-    private func createTrackingEventBatch(_ events: [TrackingEvent]) -> TrackingEventBatch {
-        return TrackingEventBatch(events: events, time: DateTime.now())
     }
     
     private func shouldStop() -> Bool {

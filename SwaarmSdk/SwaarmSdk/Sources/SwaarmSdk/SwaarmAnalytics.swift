@@ -11,8 +11,9 @@ public class SwaarmAnalytics {
     private static var urlSession: URLSession = .shared
     private static var apiQueue: DispatchQueue = .init(label: "swaarm-api")
 
-    public static func configure(config: SwaarmConfig? = nil, token: String? = nil, host: String? = nil, debug: Bool = false) {
-        let sdkConfig = SdkConfiguration()
+    public static func configure(config: SwaarmConfig? = nil, token: String? = nil, host: String? = nil,
+                                 batchSize: Int = 50, flushFrequency: Int = 10, maxSize: Int = 500,
+                                 debug: Bool = false) {
         if debug {
             self.debug(enable: debug)
         }
@@ -26,12 +27,12 @@ public class SwaarmAnalytics {
 
             let httpApiReader = HttpApiClient(host: host ?? config!.eventIngressHostname, token: token ?? config!.appToken, urlSession: urlSession, ua: ua)
 
-            self.eventRepository = EventRepository(maxSize: sdkConfig.getEventStorageSizeLimit(), batchSize: sdkConfig.getEventFlushBatchSize())
+            self.eventRepository = EventRepository(maxSize: maxSize, batchSize: batchSize)
 
             self.publisher = EventPublisher(
                 repository: eventRepository!,
                 httpApiReader: httpApiReader,
-                flushFrequency: sdkConfig.getEventFlushFrequencyInSeconds()
+                flushFrequency: flushFrequency
             )
             self.publisher!.start()
 
