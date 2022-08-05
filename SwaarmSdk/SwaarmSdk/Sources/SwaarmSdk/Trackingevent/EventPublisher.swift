@@ -5,22 +5,20 @@ class EventPublisher {
 
     private let repository: EventRepository
     private let workerQueue: DispatchQueue = DispatchQueue(label: "swaarm-event-publisher")
-    private let trackerState: TrackerState
     private let allowedFailedAttempts = 30
     private var failedAttempts = 0;
     private var startupDelayInSeconds = 10
     private var timer: DispatchSourceTimer
     private var httpApiReader: HttpApiClient
 
-    init(repository: EventRepository, trackerState: TrackerState, httpApiReader: HttpApiClient) {
+    init(repository: EventRepository, httpApiReader: HttpApiClient, flushFrequency: Int) {
         self.repository = repository
-        self.trackerState = trackerState;
         self.timer = DispatchSource.makeTimerSource(queue: workerQueue)
         self.httpApiReader = httpApiReader
         
         timer.schedule(
             deadline: .now() + DispatchTimeInterval.seconds(startupDelayInSeconds),
-            repeating: DispatchTimeInterval.seconds(trackerState.sdkConfig.getEventFlushFrequencyInSeconds())
+            repeating: DispatchTimeInterval.seconds(flushFrequency)
         )
     }
 
@@ -32,12 +30,8 @@ class EventPublisher {
                 Logger.debug("Terminating event publisher")
                 return
             }
-            
-            if self.shouldSkip() == true {
-                return
-            }
 
-            let events = self.repository.getEvents(limit: self.trackerState.sdkConfig.getEventFlushBatchSize())
+            let events = self.repository.getEvents()
 
             if events.count == 0 {
                 return
@@ -68,6 +62,10 @@ class EventPublisher {
         timer.resume()
     }
     
+    public func stop() {
+        timer.suspend()
+    }
+    
     private func createTrackingEventBatch(_ events: [TrackingEvent]) -> TrackingEventBatch {
         return TrackingEventBatch(events: events, time: DateTime.now())
     }
@@ -75,16 +73,5 @@ class EventPublisher {
     private func shouldStop() -> Bool {
         return self.failedAttempts >= self.allowedFailedAttempts
     }
-    
-    private func shouldSkip() -> Bool {
-        if !self.trackerState.isTrackingEnabled() {
-            return true
-        }
-        
-        if !UtilNetwork.isConnected() {
-            return true
-        }
-        
-        return false
-    }
+
 }

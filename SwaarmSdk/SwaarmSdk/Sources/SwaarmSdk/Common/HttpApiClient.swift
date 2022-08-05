@@ -2,14 +2,16 @@ import Foundation
 import os.log
 
 public class HttpApiClient {
-    private let trackerState: TrackerState
     private let urlSession: URLSession
     private let ua: String
+    private let token: String
+    private let host: String
 
-    init(trackerState: TrackerState, urlSession: URLSession = .shared, ua: String) {
-        self.trackerState = trackerState
+    init(host: String, token: String, urlSession: URLSession = .shared, ua: String) {
         self.urlSession = urlSession
         self.ua = ua
+        self.host = host
+        self.token = token
     }
 
     public func sendPostBlocking(jsonRequest: String, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
@@ -35,10 +37,10 @@ public class HttpApiClient {
     }
 
     public func sendPost(jsonRequest: String, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
-        var request = URLRequest(url: URL(string: trackerState.config.eventIngressHostname + requestUri)!)
+        var request = URLRequest(url: URL(string: self.host + requestUri)!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("gzip", forHTTPHeaderField: "Content-Encoding")
-        request.setValue("Bearer " + trackerState.config.appToken, forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer " + self.token, forHTTPHeaderField: "Authorization")
         request.setValue(ua, forHTTPHeaderField: "User-Agent")
         request.httpMethod = "POST"
         request.httpBody = try! (jsonRequest.data(using: String.Encoding.utf8)?.gzipped())!

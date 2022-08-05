@@ -6,13 +6,13 @@ import SQLite3
 import UIKit
 
 class EventRepository {
-    private let sdkConfig: SdkConfiguration
-    private let trackerState: TrackerState
-    private var eventsStore: OrderedDictionary<String, TrackingEvent> = [:]
+    private var eventsStore: [TrackingEvent] = []
+    private var maxSize: Int
+    private var batchSize: Int
 
-    init(trackerState: TrackerState) {
-        self.trackerState = trackerState
-        sdkConfig = trackerState.sdkConfig
+    init(maxSize: Int, batchSize: Int) {
+        self.maxSize = maxSize
+        self.batchSize = batchSize
     }
 
     public func addEvent(typeId: String?, aggregatedValue: Double, customValue: String, revenue: Double) {
@@ -29,34 +29,22 @@ class EventRepository {
             osv: device.systemVersion
         )
 
-        if eventsStore.count >= trackerState.sdkConfig.getEventStorageSizeLimit() {
+        while eventsStore.count >= maxSize {
             eventsStore.removeFirst()
         }
 
-        eventsStore[trackingEvent.id] = trackingEvent
+        eventsStore.append(trackingEvent)
     }
 
-    public func getEvents(limit: Int) -> [TrackingEvent] {
-        var events: [TrackingEvent] = []
-        var counter = 0
-
-        for event in eventsStore.values {
-            if counter < limit {
-                events.append(event)
-            }
-            counter += 1
-        }
-
-        return events
+    public func getEvents() -> [TrackingEvent] {
+        return Array(eventsStore[max(eventsStore.count - self.batchSize, 0)...])
     }
 
     public func clearByEvents(events: [TrackingEvent]) {
         if eventsStore.count == 0 {
             return
         }
-
-        for event in events {
-            eventsStore.removeValue(forKey: event.id)
-        }
+        let eventIds = events.map { $0.id }
+        eventsStore.removeAll(where: {eventIds.contains($0.id)})
     }
 }

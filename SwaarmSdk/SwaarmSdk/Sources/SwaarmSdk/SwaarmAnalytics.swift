@@ -6,25 +6,15 @@ import WebKit
 
 public class SwaarmAnalytics {
     private static var eventRepository: EventRepository?
-    private static var trackerState: TrackerState?
+    private static var publisher: EventPublisher?
     private static var isInitialized: Bool = false
     private static var urlSession: URLSession = .shared
     private static var apiQueue: DispatchQueue = .init(label: "swaarm-api")
 
     public static func configure(config: SwaarmConfig? = nil, token: String? = nil, host: String? = nil, debug: Bool = false) {
-        var swaarmConfig: SwaarmConfig
-        if config == nil {
-            swaarmConfig = SwaarmConfig(appToken: token!, eventIngressHostname: host!)
-        } else {
-            swaarmConfig = config!
-        }
         let sdkConfig = SdkConfiguration()
         if debug {
             self.debug(enable: debug)
-        }
-        if !swaarmConfig.isAppTokenValid() {
-            Logger.debug("App token is not set")
-            return
         }
         let ua = WKWebView().value(forKey: "userAgent") as! String? ?? ""
 
@@ -34,17 +24,16 @@ public class SwaarmAnalytics {
                 return
             }
 
-            self.trackerState = TrackerState(config: swaarmConfig, sdkConfig: sdkConfig, session: Session())
+            let httpApiReader = HttpApiClient(host: host ?? config!.eventIngressHostname, token: token ?? config!.appToken, urlSession: urlSession, ua: ua)
 
-            let httpApiReader = HttpApiClient(trackerState: self.trackerState!, urlSession: urlSession, ua: ua)
+            self.eventRepository = EventRepository(maxSize: sdkConfig.getEventStorageSizeLimit(), batchSize: sdkConfig.getEventFlushBatchSize())
 
-            self.eventRepository = EventRepository(trackerState: self.trackerState!)
-
-            EventPublisher(
+            self.publisher = EventPublisher(
                 repository: eventRepository!,
-                trackerState: self.trackerState!,
-                httpApiReader: httpApiReader
-            ).start()
+                httpApiReader: httpApiReader,
+                flushFrequency: sdkConfig.getEventFlushFrequencyInSeconds()
+            )
+            self.publisher!.start()
 
             self.isInitialized = true
             if !(UserDefaults.standard.object(forKey: "SwaarmSdk.initEventSent") as? Bool ?? false) {
@@ -56,14 +45,6 @@ public class SwaarmAnalytics {
     }
 
     public static func event(typeId: String? = nil, aggregatedValue: Double = 0.0, customValue: String = "", revenue: Double = 0.0) {
-        guard let state = trackerState else {
-            Logger.debug("Tracker state is not initialized")
-            return
-        }
-
-        if !state.isTrackingEnabled() {
-            return
-        }
 
         if isInitialized == false {
             Logger.debug("Tracker is not initialized")
@@ -79,22 +60,12 @@ public class SwaarmAnalytics {
     }
 
     public static func disableTracking() {
-        guard let state = trackerState else {
-            Logger.debug("Tracker not initialized.")
-            return
-        }
-
-        state.setTrackingEnabled(enabled: false)
+        self.publisher!.stop()
         Logger.debug("Tracking disabled")
     }
 
     public static func enableTracking() {
-        guard let state = trackerState else {
-            Logger.debug("Tracker not initialized.")
-            return
-        }
-
-        state.setTrackingEnabled(enabled: true)
+        self.publisher!.start()
         Logger.debug("Tracking resumed")
     }
 
