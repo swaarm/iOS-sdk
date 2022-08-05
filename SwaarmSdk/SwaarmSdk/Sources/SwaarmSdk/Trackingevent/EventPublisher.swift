@@ -5,8 +5,6 @@ class EventPublisher {
 
     private let repository: EventRepository
     private let workerQueue: DispatchQueue = DispatchQueue(label: "swaarm-event-publisher")
-    private let allowedFailedAttempts = 30
-    private var failedAttempts = 0;
     private var startupDelayInSeconds = 10
     private var timer: DispatchSourceTimer
     private var httpApiReader: HttpApiClient
@@ -25,11 +23,6 @@ class EventPublisher {
     public func start() {
         Logger.debug("Event publisher started")
         timer.setEventHandler {
-            if self.shouldStop() == true {
-                self.timer.cancel()
-                Logger.debug("Terminating event publisher")
-                return
-            }
 
             let events = self.repository.getEvents()
 
@@ -50,11 +43,7 @@ class EventPublisher {
                 successHandler: { response in
                    Logger.debug("Event batch request successfully sent.")
                    self.repository.clearByEvents(events: events)
-                   self.failedAttempts = 0
-                },
-                errorHandler: {
-                   self.failedAttempts += 1
-                }
+                }, errorHandler: {}
             )
         }
         
@@ -64,9 +53,4 @@ class EventPublisher {
     public func stop() {
         timer.suspend()
     }
-    
-    private func shouldStop() -> Bool {
-        return self.failedAttempts >= self.allowedFailedAttempts
-    }
-
 }
