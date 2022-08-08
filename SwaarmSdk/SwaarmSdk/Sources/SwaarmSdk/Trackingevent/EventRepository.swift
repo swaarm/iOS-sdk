@@ -37,7 +37,7 @@ class EventRepository {
     }
 
     public func getEvents() -> [TrackingEvent] {
-        return Array(eventsStore[max(eventsStore.count - self.batchSize, 0)...])
+        return Array(eventsStore[...(min(eventsStore.count, batchSize) - 1)])
     }
 
     public func clearByEvents(events: [TrackingEvent]) {
@@ -45,6 +45,6 @@ class EventRepository {
             return
         }
         let eventIds = events.map { $0.id }
-        eventsStore.removeAll(where: {eventIds.contains($0.id)})
+        eventsStore.removeAll(where: { eventIds.contains($0.id) })
     }
 }
