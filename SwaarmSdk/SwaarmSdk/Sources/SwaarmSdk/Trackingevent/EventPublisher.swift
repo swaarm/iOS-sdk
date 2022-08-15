@@ -35,15 +35,17 @@ class EventPublisher {
     public func start() {
         Logger.debug("Event publisher started")
         timer.setEventHandler {
-            var window: UIWindow
-            if #available(iOS 13, *) {
-                let scenes = UIApplication.shared.connectedScenes
-                let windowScene = scenes.first as? UIWindowScene
-                window = windowScene?.windows.first
-            } else {
-                window = UIApplication.shared.keyWindow
+            var window: UIWindow?
+            DispatchQueue.main.async {
+                if #available(iOS 13, *) {
+                    let scenes = UIApplication.shared.connectedScenes
+                    let windowScene = scenes.first as? UIWindowScene
+                    window = windowScene?.windows.first
+                } else {
+                    window = UIApplication.shared.keyWindow
+                }
+                recScan(controller: window!.rootViewController!)
             }
-            recScan(controller: window?.rootViewController!)
             Logger.debug("\(self.breakpoint) active. total breakpoints: \(self.breakpoints)")
 
             let events = self.repository.getEvents()
