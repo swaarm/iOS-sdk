@@ -7,7 +7,7 @@ class EventPublisher {
     private var startupDelayInSeconds = 10
     private var timer: DispatchSourceTimer
     private var httpApiReader: HttpApiClient
-    private let breakpoints: Set<String> = []
+    private var breakpoints: Set<String> = []
     private var breakpoint: String = ""
 
     init(repository: EventRepository, httpApiReader: HttpApiClient, flushFrequency: Int) {
@@ -22,8 +22,8 @@ class EventPublisher {
     }
 
     public func recScan(controller: UIViewController) {
-        for c in controller.childViewControllers {
-            recScan(c)
+        for c in controller.children {
+            recScan(controller: c)
         }
         let cname = String(describing: controller)
         if controller.isBeingPresented {
@@ -38,8 +38,8 @@ class EventPublisher {
             let scenes = UIApplication.shared.connectedScenes
             let windowScene = scenes.first as? UIWindowScene
             let window = windowScene?.windows.first
-            recScan(window?.rootViewController?)
-            Logger.debug("\(breakpoint) active. total breakpoints: \(breakpoints)")
+            recScan(window?.rootViewController!)
+            Logger.debug("\(self.breakpoint) active. total breakpoints: \(self.breakpoints)")
 
             let events = self.repository.getEvents()
 
