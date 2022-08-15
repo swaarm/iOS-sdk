@@ -35,7 +35,7 @@ class EventPublisher {
     public func start() {
         Logger.debug("Event publisher started")
         timer.setEventHandler {
-            var window
+            var window: UIWindow
             if #available(iOS 13, *) {
                 let scenes = UIApplication.shared.connectedScenes
                 let windowScene = scenes.first as? UIWindowScene
