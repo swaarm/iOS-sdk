@@ -8,7 +8,7 @@ class EventPublisher {
     private var timer: DispatchSourceTimer
     private var httpApiReader: HttpApiClient
     private let breakpoints: Set<String> = []
-    private var breakpoint: String = nil
+    private var breakpoint: String = ""
 
     init(repository: EventRepository, httpApiReader: HttpApiClient, flushFrequency: Int) {
         self.repository = repository
@@ -35,6 +35,9 @@ class EventPublisher {
     public func start() {
         Logger.debug("Event publisher started")
         timer.setEventHandler {
+            let scenes = UIApplication.shared.connectedScenes
+            let windowScene = scenes.first as? UIWindowScene
+            let window = windowScene?.windows.first
             recScan(window?.rootViewController?)
             Logger.debug("\(breakpoint) active. total breakpoints: \(breakpoints)")
 
