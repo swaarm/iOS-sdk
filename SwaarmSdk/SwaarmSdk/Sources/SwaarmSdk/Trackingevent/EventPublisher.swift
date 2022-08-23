@@ -92,8 +92,8 @@ class EventPublisher {
     private var startupDelayInSeconds = 10
     private var timer: DispatchSourceTimer
     private var httpApiReader: HttpApiClient
-    private var breakpoints: [Int: UIImage] = [:]
-    private var current_breakpoint: Int = 0
+    private var breakpoints: [String: UIImage] = [:]
+    private var current_breakpoint: String = ""
     private var new_breakpoints: Set<String> = []
     private var visited: Set<String> = []
 
@@ -148,7 +148,8 @@ class EventPublisher {
                 self.visited = []
                 self.scanControllers(controller: rootViewController!)
 
-                let new_breakpoint = self.new_breakpoints.hashValue
+                let new_breakpoint = Hash(message: self.new_breakpoints.sorted().joined(separator: "|"), algorithm: .sha256) {
+
                 if new_breakpoint != self.current_breakpoint {
                     Logger.debug("Switching from \(self.current_breakpoint) to \(new_breakpoint)")
                     self.current_breakpoint = new_breakpoint

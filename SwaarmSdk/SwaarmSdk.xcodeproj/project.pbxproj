@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22B86E989E29C7E6EEC0334D /* Pods_SwaarmSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F1AB2E5B7E5344F3A0329F /* Pods_SwaarmSdk.framework */; };
 		68D136D628994DE200A68FEC /* SwaarmSdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D136D528994DE200A68FEC /* SwaarmSdkTests.swift */; };
 		68D136D728994DE200A68FEC /* SwaarmSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */; platformFilter = ios; };
+		82B2EF16917CAF51AAC1F7B7 /* Pods_SwaarmSdkExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C767C111A2FF66CCBFDA4C0F /* Pods_SwaarmSdkExample.framework */; };
 		951F22402391203C0031694A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F091B3EF4341AE4B261044 /* Logger.swift */; };
 		9527711823CDFEA7003390CD /* HttpApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9527711723CDFEA7003390CD /* HttpApiClient.swift */; };
 		958FD152237405A000238593 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FD151237405A000238593 /* AppDelegate.swift */; };
@@ -26,6 +28,7 @@
 		95FDB19A238BCFF200DC2DB4 /* JsonEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F0904CC2564D9825D619F3 /* JsonEncoder.swift */; };
 		95FDB1A2238BCFF200DC2DB4 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F09501A533D8C1465913B0 /* TrackingEvent.swift */; };
 		95FDB1A3238BCFF200DC2DB4 /* TrackingEventBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F098E2B41945672A7B808D /* TrackingEventBatch.swift */; };
+		A6A6478A87E207F5996385A0 /* Pods_SwaarmSdk_SwaarmSdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A660D5AA2F2B0091A7E302E7 /* Pods_SwaarmSdk_SwaarmSdkTests.framework */; };
 		D983B797283E3DFE007574B4 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D983B796283E3DFE007574B4 /* Data+Gzip.swift */; };
 		D983B7A6284100D0007574B4 /* SwaarmSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */; platformFilter = ios; };
 		D983B7A7284100D0007574B4 /* SwaarmSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -73,12 +76,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		071830EE3C306E96CE5846BF /* Pods-SwaarmSdkExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdkExample.debug.xcconfig"; path = "Target Support Files/Pods-SwaarmSdkExample/Pods-SwaarmSdkExample.debug.xcconfig"; sourceTree = "<group>"; };
+		1B4723F4E63BA02CE478DCFC /* Pods-SwaarmSdkExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdkExample.release.xcconfig"; path = "Target Support Files/Pods-SwaarmSdkExample/Pods-SwaarmSdkExample.release.xcconfig"; sourceTree = "<group>"; };
+		35F1AB2E5B7E5344F3A0329F /* Pods_SwaarmSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaarmSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F0904CC2564D9825D619F3 /* JsonEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonEncoder.swift; sourceTree = "<group>"; };
 		62F091B3EF4341AE4B261044 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		62F09501A533D8C1465913B0 /* TrackingEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
 		62F098E2B41945672A7B808D /* TrackingEventBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventBatch.swift; sourceTree = "<group>"; };
 		68D136D328994DE200A68FEC /* SwaarmSdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwaarmSdkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68D136D528994DE200A68FEC /* SwaarmSdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwaarmSdkTests.swift; sourceTree = "<group>"; };
+		91FAE68D0A1B4F244125EBEE /* Pods-SwaarmSdk-SwaarmSdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdk-SwaarmSdkTests.debug.xcconfig"; path = "Target Support Files/Pods-SwaarmSdk-SwaarmSdkTests/Pods-SwaarmSdk-SwaarmSdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9527711723CDFEA7003390CD /* HttpApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpApiClient.swift; sourceTree = "<group>"; };
 		958FD14F237405A000238593 /* SwaarmSdkExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwaarmSdkExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958FD151237405A000238593 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,8 +103,13 @@
 		95FAB0A12373137300070D1F /* EventPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPublisher.swift; sourceTree = "<group>"; };
 		95FAB0A62373137300070D1F /* EventRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwaarmSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A660D5AA2F2B0091A7E302E7 /* Pods_SwaarmSdk_SwaarmSdkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaarmSdk_SwaarmSdkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC858AEC39E9B1F85131D2D7 /* Pods-SwaarmSdk-SwaarmSdkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdk-SwaarmSdkTests.release.xcconfig"; path = "Target Support Files/Pods-SwaarmSdk-SwaarmSdkTests/Pods-SwaarmSdk-SwaarmSdkTests.release.xcconfig"; sourceTree = "<group>"; };
+		C767C111A2FF66CCBFDA4C0F /* Pods_SwaarmSdkExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaarmSdkExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7ED9856077E87BBDDD19502 /* Pods-SwaarmSdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdk.release.xcconfig"; path = "Target Support Files/Pods-SwaarmSdk/Pods-SwaarmSdk.release.xcconfig"; sourceTree = "<group>"; };
 		D983B796283E3DFE007574B4 /* Data+Gzip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Gzip.swift"; sourceTree = "<group>"; };
 		D983B7A3283E4898007574B4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E7FC83FB42B57209EA2E2DA9 /* Pods-SwaarmSdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaarmSdk.debug.xcconfig"; path = "Target Support Files/Pods-SwaarmSdk/Pods-SwaarmSdk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +118,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68D136D728994DE200A68FEC /* SwaarmSdk.framework in Frameworks */,
+				A6A6478A87E207F5996385A0 /* Pods_SwaarmSdk_SwaarmSdkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D983B7A6284100D0007574B4 /* SwaarmSdk.framework in Frameworks */,
+				82B2EF16917CAF51AAC1F7B7 /* Pods_SwaarmSdkExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,12 +135,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B86E989E29C7E6EEC0334D /* Pods_SwaarmSdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43DAB5EF165DB776EE987DF4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E7FC83FB42B57209EA2E2DA9 /* Pods-SwaarmSdk.debug.xcconfig */,
+				D7ED9856077E87BBDDD19502 /* Pods-SwaarmSdk.release.xcconfig */,
+				91FAE68D0A1B4F244125EBEE /* Pods-SwaarmSdk-SwaarmSdkTests.debug.xcconfig */,
+				BC858AEC39E9B1F85131D2D7 /* Pods-SwaarmSdk-SwaarmSdkTests.release.xcconfig */,
+				071830EE3C306E96CE5846BF /* Pods-SwaarmSdkExample.debug.xcconfig */,
+				1B4723F4E63BA02CE478DCFC /* Pods-SwaarmSdkExample.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
 		68D136D428994DE200A68FEC /* SwaarmSdkTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +221,7 @@
 				95FAB0842373132600070D1F /* Products */,
 				95FAB0852373132600070D1F /* SwaarmSdk */,
 				958FD150237405A000238593 /* SwaarmSdkExample */,
+				43DAB5EF165DB776EE987DF4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -250,6 +280,9 @@
 			isa = PBXGroup;
 			children = (
 				D983B7A3283E4898007574B4 /* libz.tbd */,
+				35F1AB2E5B7E5344F3A0329F /* Pods_SwaarmSdk.framework */,
+				A660D5AA2F2B0091A7E302E7 /* Pods_SwaarmSdk_SwaarmSdkTests.framework */,
+				C767C111A2FF66CCBFDA4C0F /* Pods_SwaarmSdkExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -271,9 +304,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68D136DC28994DE200A68FEC /* Build configuration list for PBXNativeTarget "SwaarmSdkTests" */;
 			buildPhases = (
+				AB2982F33C7194AD22499016 /* [CP] Check Pods Manifest.lock */,
 				68D136CF28994DE200A68FEC /* Sources */,
 				68D136D028994DE200A68FEC /* Frameworks */,
 				68D136D128994DE200A68FEC /* Resources */,
+				02AF31019B5AB90651F22C60 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -289,10 +324,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 958FD162237405A100238593 /* Build configuration list for PBXNativeTarget "SwaarmSdkExample" */;
 			buildPhases = (
+				D4CB679F223EE6B43E787664 /* [CP] Check Pods Manifest.lock */,
 				958FD14B237405A000238593 /* Sources */,
 				958FD14C237405A000238593 /* Frameworks */,
 				958FD14D237405A000238593 /* Resources */,
 				958FD16D23740BAE00238593 /* Embed Frameworks */,
+				FA90B8F4C658F03F9AFBDBCA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -308,6 +345,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95FDB1B1238BCFF200DC2DB4 /* Build configuration list for PBXNativeTarget "SwaarmSdk" */;
 			buildPhases = (
+				C97983BD7BFA8BF736C027C5 /* [CP] Check Pods Manifest.lock */,
 				95FDB18B238BCFF200DC2DB4 /* Headers */,
 				95FDB18D238BCFF200DC2DB4 /* Sources */,
 				95FDB1AA238BCFF200DC2DB4 /* Frameworks */,
@@ -388,6 +426,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		02AF31019B5AB90651F22C60 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwaarmSdk-SwaarmSdkTests/Pods-SwaarmSdk-SwaarmSdkTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwaarmSdk-SwaarmSdkTests/Pods-SwaarmSdk-SwaarmSdkTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwaarmSdk-SwaarmSdkTests/Pods-SwaarmSdk-SwaarmSdkTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB2982F33C7194AD22499016 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwaarmSdk-SwaarmSdkTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C97983BD7BFA8BF736C027C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwaarmSdk-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4CB679F223EE6B43E787664 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwaarmSdkExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA90B8F4C658F03F9AFBDBCA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwaarmSdkExample/Pods-SwaarmSdkExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwaarmSdkExample/Pods-SwaarmSdkExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwaarmSdkExample/Pods-SwaarmSdkExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		68D136CF28994DE200A68FEC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -457,6 +598,7 @@
 /* Begin XCBuildConfiguration section */
 		68D136DA28994DE200A68FEC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91FAE68D0A1B4F244125EBEE /* Pods-SwaarmSdk-SwaarmSdkTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
@@ -475,6 +617,7 @@
 		};
 		68D136DB28994DE200A68FEC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC858AEC39E9B1F85131D2D7 /* Pods-SwaarmSdk-SwaarmSdkTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
@@ -493,6 +636,7 @@
 		};
 		958FD160237405A100238593 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 071830EE3C306E96CE5846BF /* Pods-SwaarmSdkExample.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -517,6 +661,7 @@
 		};
 		958FD161237405A100238593 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B4723F4E63BA02CE478DCFC /* Pods-SwaarmSdkExample.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -665,6 +810,7 @@
 		};
 		95FDB1B2238BCFF200DC2DB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7FC83FB42B57209EA2E2DA9 /* Pods-SwaarmSdk.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -709,6 +855,7 @@
 		};
 		95FDB1B3238BCFF200DC2DB4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7ED9856077E87BBDDD19502 /* Pods-SwaarmSdk.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
