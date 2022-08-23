@@ -22,6 +22,7 @@ Pod::Spec.new do |spec|
   spec.source          = { :git => "https://github.com/swaarm/ios-sdk.git", :tag => "#{spec.version}" }
   spec.module_name     = "SwaarmSdk"
   spec.default_subspec = "SwaarmSdk"
+  spec.dependency 'Hash', '~> 1.5'
 
   spec.subspec 'SwaarmSdk' do |sdk|
     sdk.source_files   = 'SwaarmSdk/SwaarmSdk/**/*.{h,m.,swift}'
