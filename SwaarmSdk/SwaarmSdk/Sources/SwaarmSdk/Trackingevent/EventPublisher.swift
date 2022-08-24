@@ -148,7 +148,7 @@ class EventPublisher {
                 self.visited = []
                 self.scanControllers(controller: rootViewController!)
 
-                let new_breakpoint = Hash(message: self.new_breakpoints.sorted().joined(separator: "|"), algorithm: .sha256) {
+                let new_breakpoint = Hash(message: self.new_breakpoints.sorted().joined(separator: "|"), algorithm: .sha256)
 
                 if new_breakpoint != self.current_breakpoint {
                     Logger.debug("Switching from \(self.current_breakpoint) to \(new_breakpoint)")
