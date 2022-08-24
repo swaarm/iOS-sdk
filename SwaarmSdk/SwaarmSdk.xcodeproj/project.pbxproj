@@ -231,19 +231,11 @@
 		D983B7AE28411925007574B4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				D983B7AF28411989007574B4 /* SwaarmSdk */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		D983B7AF28411989007574B4 /* SwaarmSdk */ = {
-			isa = PBXGroup;
-			children = (
 				9527711E23CE066F003390CD /* Trackingevent */,
 				95FAB0902373137300070D1F /* Common */,
 				95FAB0932373137300070D1F /* SwaarmAnalytics.swift */,
 			);
-			path = SwaarmSdk;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		F55ECE4A1ED9F3373DB308E0 /* Frameworks */ = {

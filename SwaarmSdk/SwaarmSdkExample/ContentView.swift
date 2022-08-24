@@ -1,14 +1,13 @@
-import SwiftUI
 import SwaarmSdk
+import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        SwaarmAnalytics.configure(token: "123456", host: "https://tracking-domain.com", debug: true)
 
-        SwaarmAnalytics.configure(config: SwaarmConfig(appToken: "123456", eventIngressHostname: "https://tracking-domain.com"), debug: true)
-        
         return Button(action: {
             SwaarmAnalytics.event(typeId: "2", aggregatedValue: 123, customValue: "cs")
-            
+
         }) {
             Text("Trigger tracking event")
                 .fontWeight(.regular)
