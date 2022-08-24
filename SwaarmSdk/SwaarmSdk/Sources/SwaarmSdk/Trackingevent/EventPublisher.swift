@@ -101,8 +101,8 @@ class EventPublisher {
     private var startupDelayInSeconds = 10
     private var timer: DispatchSourceTimer
     private var httpApiReader: HttpApiClient
-    private var breakpoints: [String: UIImage] = [:]
-    private var current_breakpoint: String = ""
+    private var breakpoints: [Int: UIImage] = [:]
+    private var current_breakpoint: Int = 0
     private var new_breakpoints: Set<String> = []
     private var visited: Set<String> = []
 
