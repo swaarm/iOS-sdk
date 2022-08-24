@@ -2,6 +2,15 @@ import Foundation
 import os.log
 import SwiftUI
 
+extension String {
+    var djb2hash: Int {
+        let unicodeScalars = self.unicodeScalars.map { $0.value }
+        return unicodeScalars.reduce(5381) {
+            ($0 << 5) &+ $0 &+ Int($1)
+        }
+    }
+}
+
 extension NSObject {
     var className: String {
         return String(describing: type(of: self))
@@ -148,7 +157,7 @@ class EventPublisher {
                 self.visited = []
                 self.scanControllers(controller: rootViewController!)
 
-                let new_breakpoint = Hash(message: self.new_breakpoints.sorted().joined(separator: "|"), algorithm: .sha256)
+                let new_breakpoint = self.new_breakpoints.sorted().joined(separator: "|").djb2hash
 
                 if new_breakpoint != self.current_breakpoint {
                     Logger.debug("Switching from \(self.current_breakpoint) to \(new_breakpoint)")
