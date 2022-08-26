@@ -44,6 +44,8 @@ public enum SwaarmAnalytics {
                 }, errorHandler: {}
             )
 
+            Logger.debug("collect is set to \(collect).")
+
             httpApiReader.get(
                 requestUri: "/sdk-tracked-breakpoints",
                 successHandler: { (result: String) in
