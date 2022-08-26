@@ -35,7 +35,7 @@ public enum SwaarmAnalytics {
                 return
             }
             httpApiReader.get(
-                requestUri: "/allowed-sdk-breakpoint-collectors",
+                requestUri: "/sdk-allowed-breakpoint-collectors",
                 successHandler: { (result: String) in
                     Logger.debug("received \(result)")
                     if (JsonEncoder.decode([String].self, from: result) ?? []).contains(vendorId) {
@@ -45,11 +45,11 @@ public enum SwaarmAnalytics {
             )
 
             httpApiReader.get(
-                requestUri: "/tracked-breakpoints",
+                requestUri: "/sdk-tracked-breakpoints",
                 successHandler: { (result: String) in
                     Logger.debug("received \(result)")
                     if let configuredBreakpointsData = JsonEncoder.decode(ConfiguredBreakpoints.self, from: result) {
-                        configuredBreakpoints = Dictionary(uniqueKeysWithValues: configuredBreakpointsData.viewBreakpoints.map({($0.viewName, $0.eventType)}))
+                        configuredBreakpoints = Dictionary(uniqueKeysWithValues: configuredBreakpointsData.viewBreakpoints.map { ($0.viewName, $0.eventType) })
                     }
                 }, errorHandler: {}
             )
