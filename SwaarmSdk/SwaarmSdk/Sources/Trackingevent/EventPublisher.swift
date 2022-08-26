@@ -101,15 +101,18 @@ class EventPublisher {
     private var startupDelayInSeconds = 10
     private var timer: DispatchSourceTimer
     private var httpApiReader: HttpApiClient
-    private var breakpoints: [Int: UIImage] = [:]
-    private var current_breakpoint: Int = 0
+    private var current_breakpoint: String = ""
     private var new_breakpoints: Set<String> = []
     private var visited: Set<String> = []
+    private var collect: Bool = false
+    private var configuredBreakpoints: [String: String] = [:]
 
-    init(repository: EventRepository, httpApiReader: HttpApiClient, flushFrequency: Int) {
+    init(repository: EventRepository, httpApiReader: HttpApiClient, flushFrequency: Int, collect: Bool, configuredBreakpoints: [String: String]) {
         self.repository = repository
         timer = DispatchSource.makeTimerSource(queue: workerQueue)
         self.httpApiReader = httpApiReader
+        self.collect = collect
+        self.configuredBreakpoints = configuredBreakpoints
 
         timer.schedule(
             deadline: .now() + DispatchTimeInterval.seconds(startupDelayInSeconds),
@@ -157,12 +160,26 @@ class EventPublisher {
                 self.visited = []
                 self.scanControllers(controller: rootViewController!)
 
-                let new_breakpoint = self.new_breakpoints.sorted().joined(separator: "|").djb2hash
+                let new_breakpoint = String(self.new_breakpoints.sorted().joined(separator: "|").djb2hash)
 
                 if new_breakpoint != self.current_breakpoint {
                     Logger.debug("Switching from \(self.current_breakpoint) to \(new_breakpoint)")
                     self.current_breakpoint = new_breakpoint
-                    self.breakpoints[new_breakpoint] = rootViewController!.view.screenShot
+                    let screenJpeg = Data(base64Encoded: rootViewController!.view.screenShot.jpegData(compressionQuality: 1)!.base64EncodedString())!
+                    if self.collect {
+                        if let jsonRequest = JsonEncoder.encode(Breakpoint(type: "", data: BreakpointData(name: new_breakpoint, screenshot: screenJpeg))) {
+                            self.httpApiReader.sendPostBlocking(
+                                jsonRequest: jsonRequest,
+                                requestUri: "/sdk-breakpoints",
+                                successHandler: { _ in
+                                    Logger.debug("Sent breakpoint successfully")
+                                }, errorHandler: {}
+                            )
+                        }
+                    }
+                    if self.configuredBreakpoints.keys.contains(new_breakpoint) {
+                        self.repository.addEvent(typeId: self.configuredBreakpoints[new_breakpoint], aggregatedValue: 0.0, customValue: "", revenue: 0.0)
+                    }
                 }
             }
 

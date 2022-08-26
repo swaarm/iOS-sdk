@@ -37,13 +37,23 @@ public class HttpApiClient {
     }
 
     public func sendPost(jsonRequest: String, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
-        var request = URLRequest(url: URL(string: self.host + requestUri)!)
+        call(method: "POST", jsonRequest: jsonRequest, requestUri: requestUri, successHandler: successHandler, errorHandler: {})
+    }
+
+    public func get(requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
+        call(method: "GET", jsonRequest: nil, requestUri: requestUri, successHandler: successHandler, errorHandler: {})
+    }
+
+    public func call(method: String, jsonRequest: String?, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
+        var request = URLRequest(url: URL(string: host + requestUri)!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("gzip", forHTTPHeaderField: "Content-Encoding")
-        request.setValue("Bearer " + self.token, forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
         request.setValue(ua, forHTTPHeaderField: "User-Agent")
-        request.httpMethod = "POST"
-        request.httpBody = try! (jsonRequest.data(using: String.Encoding.utf8)?.gzipped())!
+        request.httpMethod = method
+        if jsonRequest != nil {
+            request.httpBody = try! (jsonRequest!.data(using: String.Encoding.utf8)?.gzipped())!
+        }
 
         let task = urlSession.dataTask(with: request) { data, response, error in
             guard let _ = data, let response = response as? HTTPURLResponse, error == nil else {

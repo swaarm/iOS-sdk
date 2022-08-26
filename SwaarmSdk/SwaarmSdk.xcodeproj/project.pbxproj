@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		68D136D628994DE200A68FEC /* SwaarmSdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D136D528994DE200A68FEC /* SwaarmSdkTests.swift */; };
 		68D136D728994DE200A68FEC /* SwaarmSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */; platformFilter = ios; };
+		68DA0B6C28B7770F007F62ED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA0B6B28B7770F007F62ED /* Model.swift */; };
 		951F22402391203C0031694A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F091B3EF4341AE4B261044 /* Logger.swift */; };
 		9527711823CDFEA7003390CD /* HttpApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9527711723CDFEA7003390CD /* HttpApiClient.swift */; };
 		958FD152237405A000238593 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FD151237405A000238593 /* AppDelegate.swift */; };
@@ -24,8 +25,6 @@
 		95FDB198238BCFF200DC2DB4 /* SwaarmAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0932373137300070D1F /* SwaarmAnalytics.swift */; };
 		95FDB199238BCFF200DC2DB4 /* EventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAB0A12373137300070D1F /* EventPublisher.swift */; };
 		95FDB19A238BCFF200DC2DB4 /* JsonEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F0904CC2564D9825D619F3 /* JsonEncoder.swift */; };
-		95FDB1A2238BCFF200DC2DB4 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F09501A533D8C1465913B0 /* TrackingEvent.swift */; };
-		95FDB1A3238BCFF200DC2DB4 /* TrackingEventBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F098E2B41945672A7B808D /* TrackingEventBatch.swift */; };
 		D983B797283E3DFE007574B4 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D983B796283E3DFE007574B4 /* Data+Gzip.swift */; };
 		D983B7A6284100D0007574B4 /* SwaarmSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */; platformFilter = ios; };
 		D983B7A7284100D0007574B4 /* SwaarmSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95FDB1B4238BCFF200DC2DB4 /* SwaarmSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -75,10 +74,9 @@
 /* Begin PBXFileReference section */
 		62F0904CC2564D9825D619F3 /* JsonEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonEncoder.swift; sourceTree = "<group>"; };
 		62F091B3EF4341AE4B261044 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		62F09501A533D8C1465913B0 /* TrackingEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
-		62F098E2B41945672A7B808D /* TrackingEventBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventBatch.swift; sourceTree = "<group>"; };
 		68D136D328994DE200A68FEC /* SwaarmSdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwaarmSdkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68D136D528994DE200A68FEC /* SwaarmSdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwaarmSdkTests.swift; sourceTree = "<group>"; };
+		68DA0B6B28B7770F007F62ED /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		9527711723CDFEA7003390CD /* HttpApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpApiClient.swift; sourceTree = "<group>"; };
 		958FD14F237405A000238593 /* SwaarmSdkExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwaarmSdkExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958FD151237405A000238593 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,20 +136,11 @@
 		9527711E23CE066F003390CD /* Trackingevent */ = {
 			isa = PBXGroup;
 			children = (
-				9527711F23CE067A003390CD /* Model */,
+				68DA0B6B28B7770F007F62ED /* Model.swift */,
 				95FAB0A12373137300070D1F /* EventPublisher.swift */,
 				95FAB0A62373137300070D1F /* EventRepository.swift */,
 			);
 			path = Trackingevent;
-			sourceTree = "<group>";
-		};
-		9527711F23CE067A003390CD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				62F09501A533D8C1465913B0 /* TrackingEvent.swift */,
-				62F098E2B41945672A7B808D /* TrackingEventBatch.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		9527712023CE06D6003390CD /* Model */ = {
@@ -411,10 +400,9 @@
 				95FDB196238BCFF200DC2DB4 /* EventRepository.swift in Sources */,
 				95FDB198238BCFF200DC2DB4 /* SwaarmAnalytics.swift in Sources */,
 				95FDB199238BCFF200DC2DB4 /* EventPublisher.swift in Sources */,
+				68DA0B6C28B7770F007F62ED /* Model.swift in Sources */,
 				95FDB19A238BCFF200DC2DB4 /* JsonEncoder.swift in Sources */,
 				9527711823CDFEA7003390CD /* HttpApiClient.swift in Sources */,
-				95FDB1A2238BCFF200DC2DB4 /* TrackingEvent.swift in Sources */,
-				95FDB1A3238BCFF200DC2DB4 /* TrackingEventBatch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
