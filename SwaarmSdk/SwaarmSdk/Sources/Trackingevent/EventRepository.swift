@@ -9,14 +9,15 @@ class EventRepository {
     private var eventsStore: [TrackingEvent] = []
     private var maxSize: Int
     private var batchSize: Int
+    private var vendorId: String
 
-    init(maxSize: Int, batchSize: Int) {
+    init(maxSize: Int, batchSize: Int, vendorId: String) {
         self.maxSize = maxSize
         self.batchSize = batchSize
+        self.vendorId = vendorId
     }
 
     public func addEvent(typeId: String?, aggregatedValue: Double, customValue: String, revenue: Double) {
-        let device = UIDevice.current
 
         let trackingEvent = TrackingEvent(
             id: UUID().uuidString,
@@ -24,9 +25,9 @@ class EventRepository {
             aggregatedValue: aggregatedValue,
             customValue: customValue,
             revenue: revenue,
-            vendorId: device.identifierForVendor?.uuidString ?? "",
+            vendorId: vendorId,
             clientTime: DateTime.now(),
-            osv: device.systemVersion
+            osv: UIDevice.current.systemVersion
         )
 
         while eventsStore.count >= maxSize {

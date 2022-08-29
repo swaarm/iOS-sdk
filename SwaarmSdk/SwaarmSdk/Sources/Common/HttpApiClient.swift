@@ -15,6 +15,14 @@ public class HttpApiClient {
     }
 
     public func sendPostBlocking(jsonRequest: String, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
+        callBlocking(method: "POST", jsonRequest: jsonRequest, requestUri: requestUri, successHandler: successHandler, errorHandler: errorHandler)
+    }
+
+    public func getBlocking(requestUri: String, successHandler: @escaping (String) -> Void, errorHandler _: @escaping () -> Void) {
+        callBlocking(method: "GET", jsonRequest: nil, requestUri: requestUri, successHandler: successHandler, errorHandler: errorHandler)
+    }
+
+    public func callBlocking(method: String, jsonRequest: String?, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
         let semaphore = DispatchSemaphore(value: 0)
 
         let semaphoreAwareSuccessHandler: (String) -> Void = { jsonResponse in
@@ -26,24 +34,20 @@ public class HttpApiClient {
             errorHandler()
             semaphore.signal()
         }
-
-        sendPost(jsonRequest: jsonRequest, requestUri: requestUri, successHandler: semaphoreAwareSuccessHandler, errorHandler: semaphoreAwareErrorHandler)
-
+        call(method: method, jsonRequest: jsonRequest, requestUri: requestUri, successHandler: semaphoreAwareSuccessHandler, errorHandler: semaphoreAwareErrorHandler)
         _ = semaphore.wait(timeout: .now() + DispatchTimeInterval.seconds(10))
     }
 
-    public func sendPost(jsonRequest: String, requestUri: String, successHandler: @escaping (String) -> Void) {
-        sendPost(jsonRequest: jsonRequest, requestUri: requestUri, successHandler: successHandler, errorHandler: {})
-    }
-
-    public func sendPost(jsonRequest: String, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
-        var request = URLRequest(url: URL(string: self.host + requestUri)!)
+    public func call(method: String, jsonRequest: String?, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
+        var request = URLRequest(url: URL(string: host + requestUri)!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("gzip", forHTTPHeaderField: "Content-Encoding")
-        request.setValue("Bearer " + self.token, forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
         request.setValue(ua, forHTTPHeaderField: "User-Agent")
-        request.httpMethod = "POST"
-        request.httpBody = try! (jsonRequest.data(using: String.Encoding.utf8)?.gzipped())!
+        request.httpMethod = method
+        if jsonRequest != nil {
+            request.httpBody = try! (jsonRequest!.data(using: String.Encoding.utf8)?.gzipped())!
+        }
 
         let task = urlSession.dataTask(with: request) { data, response, error in
             guard let _ = data, let response = response as? HTTPURLResponse, error == nil else {

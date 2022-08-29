@@ -4,7 +4,7 @@ import os.log
 import UIKit
 import WebKit
 
-public class SwaarmAnalytics {
+public enum SwaarmAnalytics {
     private static var eventRepository: EventRepository?
     private static var publisher: EventPublisher?
     private static var isInitialized: Bool = false
@@ -13,7 +13,8 @@ public class SwaarmAnalytics {
 
     public static func configure(config: SwaarmConfig? = nil, token: String? = nil, host: String? = nil,
                                  batchSize: Int = 50, flushFrequency: Int = 10, maxSize: Int = 500,
-                                 debug: Bool = false) {
+                                 debug: Bool = false)
+    {
         if debug {
             self.debug(enable: debug)
         }
@@ -25,14 +26,44 @@ public class SwaarmAnalytics {
                 return
             }
 
-            let httpApiReader = HttpApiClient(host: host ?? config!.eventIngressHostname, token: token ?? config!.appToken, urlSession: urlSession, ua: ua)
+            var collect = false
+            var configuredBreakpoints: [String: String] = [:]
 
-            self.eventRepository = EventRepository(maxSize: maxSize, batchSize: batchSize)
+            let httpApiReader = HttpApiClient(host: host ?? config!.eventIngressHostname, token: token ?? config!.appToken, urlSession: urlSession, ua: ua)
+            guard let vendorId = UIDevice.current.identifierForVendor?.uuidString else {
+                Logger.debug("No vendorId found! stopping.")
+                return
+            }
+            httpApiReader.getBlocking(
+                requestUri: "/sdk-allowed-breakpoint-collectors",
+                successHandler: { (result: String) in
+                    Logger.debug("received \(result)")
+                    if (JsonEncoder.decode([String].self, from: result) ?? []).contains(vendorId) {
+                        collect = true
+                    }
+                }, errorHandler: {}
+            )
+
+            Logger.debug("collect is set to \(collect).")
+
+            httpApiReader.getBlocking(
+                requestUri: "/sdk-tracked-breakpoints",
+                successHandler: { (result: String) in
+                    Logger.debug("received \(result)")
+                    if let configuredBreakpointsData = JsonEncoder.decode(ConfiguredBreakpoints.self, from: result) {
+                        configuredBreakpoints = Dictionary(uniqueKeysWithValues: configuredBreakpointsData.viewBreakpoints.map { ($0.viewName, $0.eventType) })
+                    }
+                }, errorHandler: {}
+            )
+
+            self.eventRepository = EventRepository(maxSize: maxSize, batchSize: batchSize, vendorId: vendorId)
 
             self.publisher = EventPublisher(
                 repository: eventRepository!,
                 httpApiReader: httpApiReader,
-                flushFrequency: flushFrequency
+                flushFrequency: flushFrequency,
+                collect: collect,
+                configuredBreakpoints: configuredBreakpoints
             )
             self.publisher!.start()
 
@@ -46,7 +77,6 @@ public class SwaarmAnalytics {
     }
 
     public static func event(typeId: String? = nil, aggregatedValue: Double = 0.0, customValue: String = "", revenue: Double = 0.0) {
-
         if isInitialized == false {
             Logger.debug("Tracker is not initialized")
             return
@@ -61,12 +91,12 @@ public class SwaarmAnalytics {
     }
 
     public static func disableTracking() {
-        self.publisher!.stop()
+        publisher!.stop()
         Logger.debug("Tracking disabled")
     }
 
     public static func enableTracking() {
-        self.publisher!.start()
+        publisher!.start()
         Logger.debug("Tracking resumed")
     }
 
