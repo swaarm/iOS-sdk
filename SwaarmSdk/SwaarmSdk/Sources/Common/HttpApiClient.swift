@@ -18,7 +18,7 @@ public class HttpApiClient {
         callBlocking(method: "POST", jsonRequest: jsonRequest, requestUri: requestUri, successHandler: successHandler, errorHandler: errorHandler)
     }
 
-    public func getBlocking(requestUri: String, successHandler: @escaping (String) -> Void, errorHandler _: @escaping () -> Void) {
+    public func getBlocking(requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
         callBlocking(method: "GET", jsonRequest: nil, requestUri: requestUri, successHandler: successHandler, errorHandler: errorHandler)
     }
 
