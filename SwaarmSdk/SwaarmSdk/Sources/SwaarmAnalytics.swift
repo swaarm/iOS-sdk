@@ -34,7 +34,7 @@ public enum SwaarmAnalytics {
                 Logger.debug("No vendorId found! stopping.")
                 return
             }
-            httpApiReader.get(
+            httpApiReader.getBlocking(
                 requestUri: "/sdk-allowed-breakpoint-collectors",
                 successHandler: { (result: String) in
                     Logger.debug("received \(result)")
@@ -46,7 +46,7 @@ public enum SwaarmAnalytics {
 
             Logger.debug("collect is set to \(collect).")
 
-            httpApiReader.get(
+            httpApiReader.getBlocking(
                 requestUri: "/sdk-tracked-breakpoints",
                 successHandler: { (result: String) in
                     Logger.debug("received \(result)")

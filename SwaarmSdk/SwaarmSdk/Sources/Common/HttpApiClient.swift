@@ -15,6 +15,14 @@ public class HttpApiClient {
     }
 
     public func sendPostBlocking(jsonRequest: String, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
+        callBlocking(method: "POST", jsonRequest: jsonRequest, requestUri: requestUri, successHandler: successHandler, errorHandler: errorHandler)
+    }
+
+    public func getBlocking(requestUri: String, successHandler: @escaping (String) -> Void, errorHandler _: @escaping () -> Void) {
+        callBlocking(method: "GET", jsonRequest: nil, requestUri: requestUri, successHandler: successHandler, errorHandler: {})
+    }
+
+    public func callBlocking(method: String, jsonRequest: String?, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
         let semaphore = DispatchSemaphore(value: 0)
 
         let semaphoreAwareSuccessHandler: (String) -> Void = { jsonResponse in
@@ -26,22 +34,8 @@ public class HttpApiClient {
             errorHandler()
             semaphore.signal()
         }
-
-        sendPost(jsonRequest: jsonRequest, requestUri: requestUri, successHandler: semaphoreAwareSuccessHandler, errorHandler: semaphoreAwareErrorHandler)
-
+        call(method: method, jsonRequest: jsonRequest, requestUri: requestUri, successHandler: semaphoreAwareSuccessHandler, errorHandler: semaphoreAwareErrorHandler)
         _ = semaphore.wait(timeout: .now() + DispatchTimeInterval.seconds(10))
-    }
-
-    public func sendPost(jsonRequest: String, requestUri: String, successHandler: @escaping (String) -> Void) {
-        sendPost(jsonRequest: jsonRequest, requestUri: requestUri, successHandler: successHandler, errorHandler: {})
-    }
-
-    public func sendPost(jsonRequest: String, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
-        call(method: "POST", jsonRequest: jsonRequest, requestUri: requestUri, successHandler: successHandler, errorHandler: {})
-    }
-
-    public func get(requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
-        call(method: "GET", jsonRequest: nil, requestUri: requestUri, successHandler: successHandler, errorHandler: {})
     }
 
     public func call(method: String, jsonRequest: String?, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
