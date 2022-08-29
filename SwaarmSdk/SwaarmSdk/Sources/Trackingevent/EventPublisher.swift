@@ -167,7 +167,7 @@ class EventPublisher {
                     self.current_breakpoint = new_breakpoint
                     let screenJpeg = Data(base64Encoded: rootViewController!.view.screenShot.jpegData(compressionQuality: 1)!.base64EncodedString())!
                     if self.collect {
-                        if let jsonRequest = JsonEncoder.encode(Breakpoint(type: "", data: BreakpointData(name: new_breakpoint, screenshot: screenJpeg))) {
+                        if let jsonRequest = JsonEncoder.encode(Breakpoint(type: "view", data: BreakpointData(name: new_breakpoint, screenshot: screenJpeg))) {
                             self.httpApiReader.sendPostBlocking(
                                 jsonRequest: jsonRequest,
                                 requestUri: "/sdk-breakpoints",
