@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
       SDK provides API to send Swaarm tracking events.
                    DESC
   spec.homepage        = "https://github.com/swaarm/ios-sdk"
-  spec.license         = { :type => "MIT", :file => "SwaarmSdk/licence" }
+  spec.license         = { :type => "MIT", :file => "licence" }
   spec.author          = "www.swaarm.com"
   spec.platform        = :ios, "10.0"
   spec.swift_version   = ["4.2"]
