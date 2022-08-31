@@ -24,7 +24,6 @@ Pod::Spec.new do |spec|
   spec.default_subspec = "SwaarmSdk"
 
   spec.subspec 'SwaarmSdk' do |sdk|
-    sdk.source_files   = 'SwaarmSdk/SwaarmSdk/**/*.{h,m.,swift}'
-    sdk.resources    = 'SwaarmSdk/SwaarmSdk/SwaarmSdkParams.plist'
+    sdk.source_files   = 'Sources/SwaarmSdk/**/*.{h,m.,swift}'
   end
 end
