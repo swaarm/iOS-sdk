@@ -1,5 +1,6 @@
 import Foundation
 import os.log
+import Gzip
 
 public class HttpApiClient {
     private let urlSession: URLSession
