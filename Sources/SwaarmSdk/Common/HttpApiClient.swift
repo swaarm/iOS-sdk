@@ -43,10 +43,11 @@ public class HttpApiClient {
         urlSession.dataTask(with: request) { data, response, error in
             if error != nil {
                 internalError = error
-            } else if data != nil {
-                responseData = data
-            } else {
+            }  else {
                 internalResponse = response
+                if data != nil {
+                    responseData = data
+                }
             }
             semaphore.signal()
         }
