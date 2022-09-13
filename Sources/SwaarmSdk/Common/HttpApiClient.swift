@@ -40,7 +40,7 @@ public class HttpApiClient {
         var internalResponse: URLResponse?
 
         let semaphore = DispatchSemaphore(value: 0)
-        urlSession.dataTask(with: request) { data, response, error in
+        (urlSession.dataTask(with: request) { data, response, error in
             internalResponse = response
             if error != nil {
                 internalError = error
@@ -49,7 +49,7 @@ public class HttpApiClient {
                 responseData = data
             }
             semaphore.signal()
-        }
+        }).resume()
         if internalError != nil {
             throw internalError!
         }
