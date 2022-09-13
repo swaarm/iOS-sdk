@@ -22,8 +22,10 @@ public class SwaarmAnalytics: NSObject {
             if debug {
                 self.debug(enable: debug)
             }
-            let ua = WKWebView().value(forKey: "userAgent") as! String? ?? ""
-            
+            let ua = DispatchQueue.main.sync {
+                WKWebView().value(forKey: "userAgent") as! String? ?? ""
+            }
+
             if self.isInitialized {
                 Logger.debug("Already initialized.")
                 return
