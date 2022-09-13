@@ -41,13 +41,12 @@ public class HttpApiClient {
 
         let semaphore = DispatchSemaphore(value: 0)
         urlSession.dataTask(with: request) { data, response, error in
+            internalResponse = response
             if error != nil {
                 internalError = error
-            }  else {
-                internalResponse = response
-                if data != nil {
-                    responseData = data
-                }
+            }
+            if data != nil {
+                responseData = data
             }
             semaphore.signal()
         }
