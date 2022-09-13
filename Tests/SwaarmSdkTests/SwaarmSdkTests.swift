@@ -4,9 +4,7 @@ import XCTest
 final class SwaarmSdkTests: XCTestCase {
     func testEmptyNotWorking() throws {
         SwaarmAnalytics.configure()
-        while(!SwaarmAnalytics.initialized) {
 
-        }
         SwaarmAnalytics.setInitialized(initialized: false)
     }
 

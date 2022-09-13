@@ -1,6 +1,6 @@
 import Foundation
-import os.log
 import Gzip
+import os.log
 
 public class HttpApiClient {
     private let urlSession: URLSession
@@ -15,66 +15,52 @@ public class HttpApiClient {
         self.token = token
     }
 
-    public func sendPostBlocking(jsonRequest: String, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
-        callBlocking(method: "POST", jsonRequest: jsonRequest, requestUri: requestUri, successHandler: successHandler, errorHandler: errorHandler)
+    public func sendPostBlocking<T: Encodable>(requestUri: String, requestData: T) throws {
+        let httpBody = try! (try JSONEncoder().encode(requestData)).gzipped()
+        _ = try call(method: "POST", requestUri: requestUri, httpBody: httpBody)
     }
 
-    public func getBlocking(requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
-        callBlocking(method: "GET", jsonRequest: nil, requestUri: requestUri, successHandler: successHandler, errorHandler: errorHandler)
+    public func getBlocking<T: Decodable>(requestUri: String, responseType: T.Type) throws -> T {
+        return try JSONDecoder().decode(responseType, from: call(method: "GET", requestUri: requestUri)!)
     }
 
-    public func callBlocking(method: String, jsonRequest: String?, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
-        let semaphore = DispatchSemaphore(value: 0)
-
-        let semaphoreAwareSuccessHandler: (String) -> Void = { jsonResponse in
-            successHandler(jsonResponse)
-            semaphore.signal()
-        }
-
-        let semaphoreAwareErrorHandler = {
-            errorHandler()
-            semaphore.signal()
-        }
-        call(method: method, jsonRequest: jsonRequest, requestUri: requestUri, successHandler: semaphoreAwareSuccessHandler, errorHandler: semaphoreAwareErrorHandler)
-        _ = semaphore.wait(timeout: .now() + DispatchTimeInterval.seconds(10))
-    }
-
-    public func call(method: String, jsonRequest: String?, requestUri: String, successHandler: @escaping (String) -> Void, errorHandler: @escaping () -> Void) {
+    public func call(method: String, requestUri: String, httpBody: Data? = nil) throws -> Data? {
         var request = URLRequest(url: URL(string: host + requestUri)!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("gzip", forHTTPHeaderField: "Content-Encoding")
         request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
         request.setValue(ua, forHTTPHeaderField: "User-Agent")
         request.httpMethod = method
-        if jsonRequest != nil {
-            request.httpBody = try! (jsonRequest!.data(using: String.Encoding.utf8)?.gzipped())!
+        if httpBody != nil {
+            request.httpBody = httpBody
         }
 
-        let task = urlSession.dataTask(with: request) { data, response, error in
-            guard let _ = data, let response = response as? HTTPURLResponse, error == nil else {
-                os_log("An error occurred while sending SDK API request", type: .error, error as CVarArg? ?? "Unknown error")
-                errorHandler()
-                return
+        var responseData: Data?
+        var internalError: Error?
+        var internalResponse: URLResponse?
+
+        let semaphore = DispatchSemaphore(value: 0)
+        urlSession.dataTask(with: request) { data, response, error in
+            if error != nil {
+                internalError = error
+            } else if data != nil {
+                responseData = data
+            } else {
+                internalResponse = response
             }
-
-            Logger.debug(String(format: "API endpoint %@ returned response code %@", requestUri, String(response.statusCode)))
-
-            guard (200 ... 299) ~= response.statusCode else {
-                os_log("Failed to send API SDK request the statusCode should be 2xx", type: .error)
-                errorHandler()
-                return
-            }
-
-            if let data = data {
-                guard let jsonResponse = String(data: data, encoding: .utf8) else {
-                    errorHandler()
-                    return
-                }
-
-                successHandler(jsonResponse)
-            }
+            semaphore.signal()
+        }
+        if internalError != nil {
+            throw internalError!
         }
 
-        task.resume()
+        _ = semaphore.wait(timeout: .now() + DispatchTimeInterval.seconds(10))
+
+        Logger.debug(String(format: "API endpoint %@ returned response code %@", requestUri, String((internalResponse as! HTTPURLResponse).statusCode)))
+        guard (200 ... 299) ~= (internalResponse as! HTTPURLResponse).statusCode else {
+            os_log("Failed to send API SDK request the statusCode should be 2xx", type: .error)
+            throw NSError(domain: "swaarm_sdk", code: 1, userInfo: ["response": internalResponse!, "request": request])
+        }
+        return responseData
     }
 }

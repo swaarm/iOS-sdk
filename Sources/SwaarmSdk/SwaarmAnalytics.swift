@@ -5,8 +5,7 @@ import UIKit
 import WebKit
 
 @objc(SwaarmAnalytics)
-public class SwaarmAnalytics: NSObject
- {
+public class SwaarmAnalytics: NSObject {
     private static var eventRepository: EventRepository?
     private static var publisher: EventPublisher?
     private static var isInitialized: Bool = false
@@ -14,8 +13,8 @@ public class SwaarmAnalytics: NSObject
     private static var apiQueue: DispatchQueue = .init(label: "swaarm-api")
 
     @objc public static func configure(config: SwaarmConfig? = nil, token: String? = nil, host: String? = nil,
-                                 batchSize: Int = 50, flushFrequency: Int = 10, maxSize: Int = 500,
-                                 debug: Bool = false)
+                                       batchSize: Int = 50, flushFrequency: Int = 10, maxSize: Int = 500,
+                                       debug: Bool = false)
     {
         if debug {
             self.debug(enable: debug)
@@ -36,27 +35,24 @@ public class SwaarmAnalytics: NSObject
                 Logger.debug("No vendorId found! stopping.")
                 return
             }
-            httpApiReader.getBlocking(
+
+            if let allowedVendors = try? httpApiReader.getBlocking(
                 requestUri: "/sdk-allowed-breakpoint-collectors",
-                successHandler: { (result: String) in
-                    Logger.debug("received \(result)")
-                    if (JsonEncoder.decode([String].self, from: result) ?? []).contains(vendorId) {
-                        collect = true
-                    }
-                }, errorHandler: {}
-            )
+                responseType: [String].self
+            ) {
+                if allowedVendors.contains(vendorId) {
+                    collect = true
+                }
+            }
 
             Logger.debug("collect is set to \(collect).")
 
-            httpApiReader.getBlocking(
+            if let configuredBreakpointsData = try? httpApiReader.getBlocking(
                 requestUri: "/sdk-tracked-breakpoints",
-                successHandler: { (result: String) in
-                    Logger.debug("received \(result)")
-                    if let configuredBreakpointsData = JsonEncoder.decode(ConfiguredBreakpoints.self, from: result) {
-                        configuredBreakpoints = Dictionary(uniqueKeysWithValues: configuredBreakpointsData.viewBreakpoints.map { ($0.viewName, $0.eventType) })
-                    }
-                }, errorHandler: {}
-            )
+                responseType: ConfiguredBreakpoints.self
+            ) {
+                configuredBreakpoints = Dictionary(uniqueKeysWithValues: configuredBreakpointsData.viewBreakpoints.map { ($0.viewName, $0.eventType) })
+            }
 
             self.eventRepository = EventRepository(maxSize: maxSize, batchSize: batchSize, vendorId: vendorId)
 
