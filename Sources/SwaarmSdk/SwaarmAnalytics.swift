@@ -16,12 +16,14 @@ public class SwaarmAnalytics: NSObject {
                                        batchSize: Int = 50, flushFrequency: Int = 10, maxSize: Int = 500,
                                        debug: Bool = false)
     {
-        if debug {
-            self.debug(enable: debug)
-        }
-        let ua = WKWebView().value(forKey: "userAgent") as! String? ?? ""
+
 
         apiQueue.async {
+            if debug {
+                self.debug(enable: debug)
+            }
+            let ua = WKWebView().value(forKey: "userAgent") as! String? ?? ""
+            
             if self.isInitialized {
                 Logger.debug("Already initialized.")
                 return
