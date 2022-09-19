@@ -8,23 +8,19 @@ import WebKit
 public class SwaarmAnalytics: NSObject {
     private static var eventRepository: EventRepository?
     private static var publisher: EventPublisher?
-    private static var isInitialized: Bool = false
+    static var isInitialized: Bool = false
     private static var urlSession: URLSession = .shared
-    private static var apiQueue: DispatchQueue = .init(label: "swaarm-api")
+    static var apiQueue: DispatchQueue = .init(label: "swaarm-api", qos: .utility)
 
     @objc public static func configure(config: SwaarmConfig? = nil, token: String? = nil, host: String? = nil,
                                        batchSize: Int = 50, flushFrequency: Int = 10, maxSize: Int = 500,
                                        debug: Bool = false)
     {
-
-
         apiQueue.async {
             if debug {
                 self.debug(enable: debug)
             }
-            let ua = DispatchQueue.main.sync {
-                WKWebView().value(forKey: "userAgent") as! String? ?? ""
-            }
+            let ua = UAString()
 
             if self.isInitialized {
                 Logger.debug("Already initialized.")
