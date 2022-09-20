@@ -1,21 +1,6 @@
 import Foundation
 import UIKit
 
-// eg. Darwin/16.3.0
-func DarwinVersion() -> String {
-    var sysinfo = utsname()
-    uname(&sysinfo)
-    let dv = String(bytes: Data(bytes: &sysinfo.release, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
-    return "Darwin/\(dv)"
-}
-
-// eg. CFNetwork/808.3
-func CFNetworkVersion() -> String {
-    let dictionary = Bundle(identifier: "com.apple.CFNetwork")?.infoDictionary!
-    let version = dictionary?["CFBundleShortVersionString"] as! String
-    return "CFNetwork/\(version)"
-}
-
 // eg. iOS/10_1
 func deviceVersion() -> String {
     let currentDevice = UIDevice.current
@@ -39,6 +24,10 @@ func appNameAndVersion() -> String {
     return "\(name)/\(version)"
 }
 
+func sdkVersion() -> String {
+    return "SwaarmSDK/0.4.12"
+}
+
 func UAString() -> String {
-    return "\(appNameAndVersion()) \(deviceName()) \(deviceVersion()) \(CFNetworkVersion()) \(DarwinVersion())"
+    return "\(appNameAndVersion()) \(deviceName()) \(deviceVersion()) \(sdkVersion())"
 }
