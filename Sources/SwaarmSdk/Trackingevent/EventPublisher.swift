@@ -95,7 +95,7 @@ extension UIWindow {
     }
 }
 
-class EventPublisher {
+public class EventPublisher {
     private let repository: EventRepository
     private let workerQueue: DispatchQueue = .init(label: "swaarm-event-publisher", qos: .utility)
     private var startupDelayInSeconds = 10
@@ -105,7 +105,7 @@ class EventPublisher {
     private var new_breakpoints: Set<String> = []
     private var visited: Set<String> = []
     private var collect: Bool = false
-    private var configuredBreakpoints: [String: String] = [:]
+    public var configuredBreakpoints: [String: String] = [:]
 
     init(repository: EventRepository, httpApiReader: HttpApiClient, flushFrequency: Int, collect: Bool, configuredBreakpoints: [String: String]) {
         self.repository = repository

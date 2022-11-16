@@ -50,12 +50,13 @@ public class HttpApiClient {
             }
             semaphore.signal()
         }).resume()
+
+
+        _ = semaphore.wait(timeout: .now() + DispatchTimeInterval.seconds(10))
+        
         if internalError != nil {
             throw internalError!
         }
-
-        _ = semaphore.wait(timeout: .now() + DispatchTimeInterval.seconds(10))
-
         Logger.debug(String(format: "API endpoint %@ returned response code %@", requestUri, String((internalResponse as! HTTPURLResponse).statusCode)))
         guard (200 ... 299) ~= (internalResponse as! HTTPURLResponse).statusCode else {
             os_log("Failed to send API SDK request the statusCode should be 2xx", type: .error)

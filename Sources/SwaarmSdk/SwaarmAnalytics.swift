@@ -7,7 +7,7 @@ import WebKit
 @objc(SwaarmAnalytics)
 public class SwaarmAnalytics: NSObject {
     private static var eventRepository: EventRepository?
-    private static var publisher: EventPublisher?
+    public static var publisher: EventPublisher?
     static var isInitialized: Bool = false
     private static var urlSession: URLSession = .shared
     static var apiQueue: DispatchQueue = .init(label: "swaarm-api", qos: .utility)
@@ -29,6 +29,11 @@ public class SwaarmAnalytics: NSObject {
 
             var collect = false
             var configuredBreakpoints: [String: String] = [:]
+
+            if host == nil || token == nil, config == nil {
+                Logger.debug("Either host and token or config has to be passed. host:\(host) token:\(token) config:\(config)")
+                return
+            }
 
             let httpApiReader = HttpApiClient(host: host ?? config!.eventIngressHostname, token: token ?? config!.appToken, urlSession: urlSession, ua: ua)
             guard let vendorId = UIDevice.current.identifierForVendor?.uuidString else {
