@@ -18,6 +18,10 @@ class EventRepository {
     }
 
     public func addEvent(typeId: String?, aggregatedValue: Double, customValue: String, revenue: Double) {
+        var idfa: String? = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        if idfa == "00000000-0000-0000-0000-000000000000" {
+            idfa = nil
+        }
 
         let trackingEvent = TrackingEvent(
             id: UUID().uuidString,
@@ -27,7 +31,9 @@ class EventRepository {
             revenue: revenue,
             vendorId: vendorId,
             clientTime: DateTime.now(),
-            osv: UIDevice.current.systemVersion
+            osv: UIDevice.current.systemVersion,
+            advertisingId: idfa
+
         )
 
         while eventsStore.count >= maxSize {
