@@ -50,12 +50,13 @@ public class SwaarmAnalytics: NSObject {
                 requestUri: "/sdk-allowed-breakpoint-collectors",
                 responseType: [String].self
             ) {
+                Logger.debug("allowed vendors: \(allowedVendors)")
                 if allowedVendors.contains(vendorId) {
                     collect = true
                 }
             }
 
-            Logger.debug("collect is set to \(collect). allowed are \(allowedVendors)")
+            Logger.debug("collect is set to \(collect).")
 
             if let configuredBreakpointsData = try? httpApiReader.getBlocking(
                 requestUri: "/sdk-tracked-breakpoints",
