@@ -136,10 +136,10 @@ public class SwaarmAnalytics: NSObject {
                 kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock,
                 kSecValueData: DateTime.now(),
             ] as NSDictionary, nil)
-            guard status == errSecSuccess else { Logger.debug("Error writing to keychain!"); return false }
+            guard status == errSecSuccess else { Logger.debug("Error writing to keychain! \(statusCreate)"); return false }
             return false
         default:
-            Logger.debug("Error reading from keychain!")
+            Logger.debug("Error reading from keychain! \(status)")
             return false
         }
     }
