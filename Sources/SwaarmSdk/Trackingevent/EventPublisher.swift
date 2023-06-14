@@ -95,9 +95,9 @@ extension UIWindow {
     }
 }
 
-class EventPublisher {
+public class EventPublisher {
     private let repository: EventRepository
-    private let workerQueue: DispatchQueue = .init(label: "swaarm-event-publisher")
+    private let workerQueue: DispatchQueue = .init(label: "swaarm-event-publisher", qos: .utility)
     private var startupDelayInSeconds = 10
     private var timer: DispatchSourceTimer
     private var httpApiReader: HttpApiClient
@@ -105,7 +105,7 @@ class EventPublisher {
     private var new_breakpoints: Set<String> = []
     private var visited: Set<String> = []
     private var collect: Bool = false
-    private var configuredBreakpoints: [String: String] = [:]
+    public var configuredBreakpoints: [String: String] = [:]
 
     init(repository: EventRepository, httpApiReader: HttpApiClient, flushFrequency: Int, collect: Bool, configuredBreakpoints: [String: String]) {
         self.repository = repository
@@ -167,15 +167,10 @@ class EventPublisher {
                     self.current_breakpoint = new_breakpoint
                     let screenJpeg = Data(base64Encoded: rootViewController!.view.screenShot.jpegData(compressionQuality: 1)!.base64EncodedString())!
                     if self.collect {
-                        if let jsonRequest = JsonEncoder.encode(Breakpoint(type: "VIEW", data: BreakpointData(name: new_breakpoint, screenshot: screenJpeg))) {
-                            self.httpApiReader.sendPostBlocking(
-                                jsonRequest: jsonRequest,
-                                requestUri: "/sdk-breakpoints",
-                                successHandler: { _ in
-                                    Logger.debug("Sent breakpoint successfully")
-                                }, errorHandler: {}
-                            )
-                        }
+                        try? self.httpApiReader.sendPostBlocking(
+                            requestUri: "/sdk-breakpoints",
+                            requestData: Breakpoint(type: "VIEW", data: BreakpointData(name: new_breakpoint, screenshot: screenJpeg))
+                        )
                     }
                     if self.configuredBreakpoints.keys.contains(new_breakpoint) {
                         self.repository.addEvent(typeId: self.configuredBreakpoints[new_breakpoint], aggregatedValue: 0.0, customValue: "", revenue: 0.0)
@@ -189,21 +184,11 @@ class EventPublisher {
                 return
             }
 
-            guard let jsonRequest = JsonEncoder.encode(TrackingEventBatch(events: events, time: DateTime.now())) else {
-                Logger.debug("Unable to decode event data, skipping")
-                return
-            }
-
-            Logger.debug("Sending events \(jsonRequest)")
-
-            self.httpApiReader.sendPostBlocking(
-                jsonRequest: jsonRequest,
+            try? self.httpApiReader.sendPostBlocking(
                 requestUri: "/sdk",
-                successHandler: { _ in
-                    Logger.debug("Event batch request successfully sent.")
-                    self.repository.clearByEvents(events: events)
-                }, errorHandler: {}
+                requestData: TrackingEventBatch(events: events, time: DateTime.now())
             )
+            self.repository.clearByEvents(events: events)
         }
 
         timer.resume()

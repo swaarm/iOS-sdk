@@ -9,6 +9,7 @@ struct TrackingEvent: Codable {
     var vendorId: String
     var clientTime: String
     var osv: String
+    var advertisingId: String?
 }
 
 struct TrackingEventBatch: Codable {
