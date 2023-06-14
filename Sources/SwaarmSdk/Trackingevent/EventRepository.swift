@@ -22,6 +22,7 @@ class EventRepository {
         if idfa == "00000000-0000-0000-0000-000000000000" {
             idfa = nil
         }
+        Logger.debug("idfa: \(idfa)")
 
         let trackingEvent = TrackingEvent(
             id: UUID().uuidString,
@@ -33,7 +34,6 @@ class EventRepository {
             clientTime: DateTime.now(),
             osv: UIDevice.current.systemVersion,
             advertisingId: idfa
-
         )
 
         while eventsStore.count >= maxSize {

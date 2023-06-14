@@ -12,7 +12,7 @@ final class SwaarmSdkTests: XCTestCase {
 
     func testConfigAres() throws {
         SwaarmAnalytics.configure(
-            token: "4e30d105720586e26f60e3c521b0792950f0c2fea0f55b64280b0f7b8f88e445", host: "https://track.ares.swaarm-clients.com"
+            token: "skhuehkpe72c0aoafxz0nqrfutmiolwt5tlp4no65ly", host: "https://track.venus.swaarm-clients.com"
         )
         SwaarmAnalytics.apiQueue.sync {}
         XCTAssert(SwaarmAnalytics.isInitialized)

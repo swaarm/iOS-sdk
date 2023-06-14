@@ -1,6 +1,7 @@
 import AdSupport
 import Foundation
 import os.log
+import Security
 import UIKit
 import WebKit
 
