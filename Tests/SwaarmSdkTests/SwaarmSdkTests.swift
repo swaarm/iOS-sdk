@@ -10,7 +10,7 @@ final class SwaarmSdkTests: XCTestCase {
         SwaarmAnalytics.setInitialized(initialized: false)
     }
 
-    func testConfigAres() throws {
+    func testConfigVenus() throws {
         SwaarmAnalytics.configure(
             token: "skhuehkpe72c0aoafxz0nqrfutmiolwt5tlp4no65ly", host: "https://track.venus.swaarm-clients.com"
         )
