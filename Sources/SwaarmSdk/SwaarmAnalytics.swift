@@ -55,7 +55,7 @@ public class SwaarmAnalytics: NSObject {
                 }
             }
 
-            Logger.debug("collect is set to \(collect).")
+            Logger.debug("collect is set to \(collect). allowed are \(allowedVendors)")
 
             if let configuredBreakpointsData = try? httpApiReader.getBlocking(
                 requestUri: "/sdk-tracked-breakpoints",
