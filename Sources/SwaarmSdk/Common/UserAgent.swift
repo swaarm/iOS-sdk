@@ -25,7 +25,7 @@ func appNameAndVersion() -> String {
 }
 
 func sdkVersion() -> String {
-    return "SwaarmSDK/1.0.0"
+    return "SwaarmSDK/1.0.2"
 }
 
 func UAString() -> String {
