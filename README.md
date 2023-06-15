@@ -39,7 +39,7 @@ SwaarmAnalytics.event(typeId: "buy_sword", revenue: 12.1)
 
 #### Objective-C
 ```
-    [SwaarmAnalytics configureWithToken: @"skhuehkpe72c0aoafxz0nqrfutmiolwt5tlp4no65ly" host: @"https://track.venus.swaarm-clients.com" batchSize:10 flushFrequency: 10 maxSize: 50 debug: YES];
+    [SwaarmAnalytics configureWithToken: @"123456" host: @"https://tracker-domain.com" batchSize:10 flushFrequency: 10 maxSize: 50 debug: YES];
     [SwaarmAnalytics eventWithTypeId:@"eventTypeId" aggregatedValue:0.0 customValue:@"custom" revenue:0.0];
 ```
 
