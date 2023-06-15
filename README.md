@@ -12,7 +12,8 @@ To load the framework manually go to https://github.com/swaarm/iOS-sdk/releases 
 Import module:
 
 ```
-import SwaarmSdk
+import SwaarmSdk  // swift
+@import SwaarmSdk;  // objective-c
 ```
 
 Initialize the SDK with host and token, as received by our team.
@@ -21,17 +22,25 @@ The SDK determines if an app was installed before by checking and setting a keyc
 
 To get additional debug output, set debug to true.
 
+#### Swift
+
 ```
 SwaarmAnalytics.configure(token: "123456", host: "https://tracker-domain.com")
-  
 SwaarmAnalytics.configure(token: "123456", host: "https://tracker-domain.com", debug: true)
+
 ```
 
-Send event (all parameters are optional):
+Then send event (all parameters are optional):
 ```
 SwaarmAnalytics.event("event_type_id", 123D, "custom value")
 SwaarmAnalytics.event(typeId: "event_type_id", aggregatedValue: 123D, customValue: "custom value", revenue: 12.1)
 SwaarmAnalytics.event(typeId: "buy_sword", revenue: 12.1)
+```
+
+#### Objective-C
+```
+    [SwaarmAnalytics configureWithToken: @"skhuehkpe72c0aoafxz0nqrfutmiolwt5tlp4no65ly" host: @"https://track.venus.swaarm-clients.com" batchSize:10 flushFrequency: 10 maxSize: 50 debug: YES];
+    [SwaarmAnalytics eventWithTypeId:@"eventTypeId" aggregatedValue:0.0 customValue:@"custom" revenue:0.0];
 ```
 
 send event will automatically enrich the event with some userdata, e.g. os_version, vendorId and - if available - idfa.
