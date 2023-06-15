@@ -1,5 +1,6 @@
 # Swaarm SDK (iOS)
 
+Swaarm SDK is tiny and only uses one library for gzip. Including libraries, it's only 64K.
 To use the SDK is as simple as following these 3 steps:
 
 ## 1 Add Package to XCode
