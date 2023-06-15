@@ -1,6 +1,4 @@
-# Summary
-
-This is iOS SDK For Swaarm tracker. It provides API to send data to Swaarm tracker.
+# Swaarm SDK (iOS)
 
 To use the SDK, there's only a few simple steps required:
 
