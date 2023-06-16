@@ -158,22 +158,24 @@ public class EventPublisher {
                 let rootViewController = UIWindow.key!.rootViewController
                 self.new_breakpoints = [String(describing: type(of: UIApplication.shared.topMostViewController()))]
                 self.visited = []
-                self.scanControllers(controller: rootViewController!)
+                if self.collect || !self.configuredBreakpoints.isEmpty {
+                    self.scanControllers(controller: rootViewController!)
 
-                let new_breakpoint = String(self.new_breakpoints.sorted().joined(separator: "|").djb2hash)
+                    let new_breakpoint = String(self.new_breakpoints.sorted().joined(separator: "|").djb2hash)
 
-                if new_breakpoint != self.current_breakpoint {
-                    Logger.debug("Switching from \(self.current_breakpoint) to \(new_breakpoint)")
-                    self.current_breakpoint = new_breakpoint
-                    let screenJpeg = Data(base64Encoded: rootViewController!.view.screenShot.jpegData(compressionQuality: 1)!.base64EncodedString())!
-                    if self.collect {
-                        try? self.httpApiReader.sendPostBlocking(
-                            requestUri: "/sdk-breakpoints",
-                            requestData: Breakpoint(type: "VIEW", data: BreakpointData(name: new_breakpoint, screenshot: screenJpeg))
-                        )
-                    }
-                    if self.configuredBreakpoints.keys.contains(new_breakpoint) {
-                        self.repository.addEvent(typeId: self.configuredBreakpoints[new_breakpoint], aggregatedValue: 0.0, customValue: "", revenue: 0.0)
+                    if new_breakpoint != self.current_breakpoint {
+                        Logger.debug("Switching from \(self.current_breakpoint) to \(new_breakpoint)")
+                        self.current_breakpoint = new_breakpoint
+                        if self.collect {
+                            let screenJpeg = Data(base64Encoded: rootViewController!.view.screenShot.jpegData(compressionQuality: 1)!.base64EncodedString())!
+                            try? self.httpApiReader.sendPostBlocking(
+                                requestUri: "/sdk-breakpoints",
+                                requestData: Breakpoint(type: "VIEW", data: BreakpointData(name: new_breakpoint, screenshot: screenJpeg))
+                            )
+                        }
+                        if self.configuredBreakpoints.keys.contains(new_breakpoint) {
+                            self.repository.addEvent(typeId: self.configuredBreakpoints[new_breakpoint], aggregatedValue: 0.0, customValue: "", revenue: 0.0)
+                        }
                     }
                 }
             }
