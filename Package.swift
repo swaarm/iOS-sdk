@@ -15,15 +15,11 @@ let package = Package(
             targets: ["SwaarmSdk"]
         ),
     ],
-    dependencies: [
-        .package(url: "https://github.com/1024jp/GzipSwift", from: "5.2.0"),
-    ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "SwaarmSdk",
-            dependencies: [.product(name: "Gzip", package: "GzipSwift")]
+            name: "SwaarmSdk"
         ),
         .testTarget(
             name: "SwaarmSdkTests",

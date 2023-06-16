@@ -1,5 +1,4 @@
 import Foundation
-import Gzip
 import os.log
 
 public class HttpApiClient {
