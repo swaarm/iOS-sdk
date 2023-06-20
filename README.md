@@ -22,19 +22,23 @@ sent events will automatically be enriched with some userdata, e.g. os_version, 
 On devices using ios14 and up, tracking needs to be specifically requested to be able to get a non-zero idfa. To enable the idfa,
 tracking needs to be requested from a visible app, as per https://stackoverflow.com/a/72287836/1768607
 
+purchase is a special form of event, where you can supply revenue, currency and the receipt/transactionId to verify the purchase instead of supplying the usual aggregatedValue and customValue.
+
 ### Swift
 
 ```
     import SwaarmSdk
     SwaarmAnalytics.configure(token: "123456", host: "https://tracker-domain.com", debug: true)
-    SwaarmAnalytics.event(typeId: "event_type_id", aggregatedValue: 123D, customValue: "custom value", revenue: 12.1)
+    SwaarmAnalytics.event(typeId: "event_type_id", aggregatedValue: 123D, customValue: "custom value")
+    SwaarmAnalytics.purchase(typeId: "event_type_id", revenue: 12.0, currency: "USD", receipt: "base64 receipt or transactionId")
 ```
 
 ### Objective-C
 ```
     @import SwaarmSdk;
     [SwaarmAnalytics configureWithToken: @"123456" host: @"https://tracker-domain.com" batchSize:10 flushFrequency: 10 maxSize: 50 debug: YES];
-    [SwaarmAnalytics eventWithTypeId:@"eventTypeId" aggregatedValue:0.0 customValue:@"custom" revenue:0.0];
+    [SwaarmAnalytics eventWithTypeId:@"eventTypeId" aggregatedValue:0.0 customValue:@"custom"];
+    [SwaarmAnalytics eventWithTypeId:@"eventTypeId" revenue:0.0 customValue:@"USD" receipt:@"base64 receipt or transactionId"];
 ```
 
 ## 3 Build your App and Publish it
