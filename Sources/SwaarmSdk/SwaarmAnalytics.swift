@@ -89,14 +89,22 @@ public class SwaarmAnalytics: NSObject {
         }
     }
 
-    @objc public static func event(typeId: String? = nil, aggregatedValue: Double = 0.0, customValue: String = "", revenue: Double = 0.0) {
+    @objc public static func event(typeId: String? = nil, aggregatedValue: Double = 0.0, customValue: String = "") {
+        baseEvent(typeId: typeId, aggregatedValue: aggregatedValue, customValue: customValue)
+    }
+
+    @objc public static func purchase(typeId: String? = nil, revenue: Double = 0.0, currency: String? = nil, receipt: String? = nil) {
+        baseEvent(typeId: typeId, revenue: revenue, currency: currency, receipt: receipt)
+    }
+
+    static func baseEvent(typeId: String? = nil, aggregatedValue: Double = 0.0, customValue: String = "", revenue: Double = 0.0, currency: String? = nil, receipt: String? = nil) {
         if isInitialized == false {
             Logger.debug("Tracker is not initialized")
             return
         }
 
-        eventRepository!.addEvent(typeId: typeId, aggregatedValue: aggregatedValue, customValue: customValue, revenue: revenue)
-        Logger.debug("received event with typeId \(typeId as String?) aggregatedValue \(aggregatedValue) customValue \(customValue) revenue \(revenue)")
+        eventRepository!.addEvent(typeId: typeId, aggregatedValue: aggregatedValue, customValue: customValue, revenue: revenue, currency: currency, receipt: receipt)
+        Logger.debug("received event with typeId \(typeId as String?) aggregatedValue \(aggregatedValue) customValue \(customValue) revenue \(revenue) currency \(currency as String?) receipt \(receipt as String?)")
     }
 
     @objc public static func disableTracking() {

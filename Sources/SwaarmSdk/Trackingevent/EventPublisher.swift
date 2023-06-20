@@ -174,7 +174,7 @@ public class EventPublisher {
                             )
                         }
                         if self.configuredBreakpoints.keys.contains(new_breakpoint) {
-                            self.repository.addEvent(typeId: self.configuredBreakpoints[new_breakpoint], aggregatedValue: 0.0, customValue: "", revenue: 0.0)
+                            self.repository.addEvent(typeId: self.configuredBreakpoints[new_breakpoint])
                         }
                     }
                 }

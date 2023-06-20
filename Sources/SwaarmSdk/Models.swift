@@ -1,5 +1,9 @@
 import Foundation
 
+struct IosPurchaseValidation: Codable {
+    var receipt: String
+}
+
 struct TrackingEvent: Codable {
     var id: String
     var typeId: String?
@@ -10,6 +14,8 @@ struct TrackingEvent: Codable {
     var clientTime: String
     var osv: String
     var advertisingId: String?
+    var currency: String?
+    var iosPurchaseValidation: IosPurchaseValidation?
 }
 
 struct TrackingEventBatch: Codable {

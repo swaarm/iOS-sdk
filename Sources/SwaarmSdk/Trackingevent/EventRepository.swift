@@ -17,12 +17,16 @@ class EventRepository {
         self.vendorId = vendorId
     }
 
-    public func addEvent(typeId: String?, aggregatedValue: Double, customValue: String, revenue: Double) {
+    public func addEvent(typeId: String? = nil, aggregatedValue: Double = 0.0, customValue: String = "", revenue: Double = 0.0, currency: String? = nil, receipt: String? = nil) {
         var idfa: String? = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         if idfa == "00000000-0000-0000-0000-000000000000" {
             idfa = nil
         }
-        Logger.debug("idfa: \(idfa)")
+        var iosPurchaseValidation: IosPurchaseValidation?
+        if receipt != nil {
+            iosPurchaseValidation = IosPurchaseValidation(receipt: receipt!)
+        }
+        Logger.debug("idfa: \(idfa as String?)")
 
         let trackingEvent = TrackingEvent(
             id: UUID().uuidString,
@@ -33,7 +37,9 @@ class EventRepository {
             vendorId: vendorId,
             clientTime: DateTime.now(),
             osv: UIDevice.current.systemVersion,
-            advertisingId: idfa
+            advertisingId: idfa,
+            currency: currency,
+            iosPurchaseValidation: iosPurchaseValidation
         )
 
         while eventsStore.count >= maxSize {
