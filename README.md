@@ -38,7 +38,7 @@ purchase is a special form of event, where you can supply revenue, currency and 
     @import SwaarmSdk;
     [SwaarmAnalytics configureWithToken: @"123456" host: @"https://tracker-domain.com" batchSize:10 flushFrequency: 10 maxSize: 50 debug: YES];
     [SwaarmAnalytics eventWithTypeId:@"eventTypeId" aggregatedValue:0.0 customValue:@"custom"];
-    [SwaarmAnalytics eventWithTypeId:@"eventTypeId" revenue:0.0 customValue:@"USD" receipt:@"base64 receipt or transactionId"];
+    [SwaarmAnalytics purchaseWithTypeId:@"eventTypeId" revenue:0.0 currency:@"USD" receipt:@"base64 receipt or transactionId"];
 ```
 
 ## 3 Build your App and Publish it
