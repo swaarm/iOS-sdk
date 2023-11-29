@@ -98,7 +98,7 @@ extension UIWindow {
 public class EventPublisher {
     private let repository: EventRepository
     private let workerQueue: DispatchQueue = .init(label: "swaarm-event-publisher", qos: .utility)
-    private var startupDelayInSeconds = 0.5
+    private var startupDelayInSeconds = 1
     private var timer: DispatchSourceTimer
     private var httpApiReader: HttpApiClient
     private var current_breakpoint: String = ""
