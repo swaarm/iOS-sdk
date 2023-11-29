@@ -13,7 +13,7 @@ public class SwaarmAnalytics: NSObject {
     private static var urlSession: URLSession = .shared
     static var apiQueue: DispatchQueue = .init(label: "swaarm-api", qos: .utility)
 
-    @objc public static func configure(token: String, host: String, batchSize: Int = 50, flushFrequency: Int = 10, maxSize: Int = 500, debug: Bool = false)
+    @objc public static func configure(token: String, host: String, batchSize: Int = 50, flushFrequency: Int = 2, maxSize: Int = 500, debug: Bool = false)
     {
         apiQueue.async {
             if debug {
