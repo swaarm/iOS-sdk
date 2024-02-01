@@ -13,8 +13,7 @@ public class SwaarmAnalytics: NSObject {
     private static var urlSession: URLSession = .shared
     static var apiQueue: DispatchQueue = .init(label: "swaarm-api", qos: .utility)
 
-    @objc public static func configure(token: String, host: String, batchSize: Int = 50, flushFrequency: Int = 2, maxSize: Int = 500, debug: Bool = false)
-    {
+    @objc public static func configure(token: String, host: String, batchSize: Int = 50, flushFrequency: Int = 2, maxSize: Int = 500, debug: Bool = false) {
         apiQueue.async {
             if debug {
                 self.debug(enable: debug)
@@ -62,7 +61,7 @@ public class SwaarmAnalytics: NSObject {
                 requestUri: "/sdk-tracked-breakpoints",
                 responseType: ConfiguredBreakpoints.self
             ) {
-                configuredBreakpoints = Dictionary(uniqueKeysWithValues: configuredBreakpointsData.viewBreakpoints.map { ($0.viewName, $0.eventType) })
+                configuredBreakpoints = Dictionary(configuredBreakpointsData.viewBreakpoints.map { ($0.viewName, $0.eventType) }, uniquingKeysWith: { _, last in last })
             }
 
             self.eventRepository = EventRepository(maxSize: maxSize, batchSize: batchSize, vendorId: vendorId)
