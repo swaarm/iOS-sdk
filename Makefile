@@ -1,8 +1,8 @@
 build:
-	xcodebuild build -sdk iphoneos -scheme SwaarmSdk -destination 'name=iPhone 16'
+	xcodebuild build -scheme SwaarmSdk -destination 'generic/platform=iOS Simulator'
 
 clean:
 	rm -rf .build
 
 test:
-	xcodebuild test -sdk iphoneos -scheme SwaarmSdk -destination 'name=iPhone 16'
+	xcodebuild test -scheme SwaarmSdk -destination 'platform=iOS Simulator,name=iPhone 16'
