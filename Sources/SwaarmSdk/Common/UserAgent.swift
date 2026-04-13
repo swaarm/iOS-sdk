@@ -1,33 +1,20 @@
 import Foundation
 import UIKit
 
-// eg. iOS/10_1
-func deviceVersion() -> String {
-    let currentDevice = UIDevice.current
-    return "\(currentDevice.systemName)/\(currentDevice.systemVersion)"
-}
-
-// eg. iPhone5,2
+// eg. iPhone15,2
 func deviceName() -> String {
+    #if targetEnvironment(simulator)
+    if let simulatorModel = ProcessInfo.processInfo.environment["SIMULATOR_MODEL_IDENTIFIER"] {
+        return simulatorModel
+    }
+    #endif
     var sysinfo = utsname()
     uname(&sysinfo)
     return String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
 }
 
-// eg. MyApp/1
-func appNameAndVersion() -> String {
-    guard let dictionary = Bundle.main.infoDictionary else {
-        return ""
-    }
-    let version = dictionary["CFBundleShortVersionString"] as! String
-    let name = dictionary["CFBundleName"] as! String
-    return "\(name)/\(version)"
-}
-
-func sdkVersion() -> String {
-    return "SwaarmSDK/1.1.1"
-}
-
 func UAString() -> String {
-    return "\(appNameAndVersion()) \(deviceName()) \(deviceVersion()) \(sdkVersion())"
+    let osv = UIDevice.current.systemVersion
+    let model = deviceName()
+    return "SwaarmSDK Os##iOS##;Osv##\(osv)##;Muf##Apple##;Model##\(model)##;"
 }

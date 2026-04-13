@@ -1,25 +1,22 @@
-// swift-tools-version: 5.6
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version: 5.9
 
 import PackageDescription
 
 let package = Package(
     name: "SwaarmSdk",
     platforms: [
-        .iOS(.v10),
+        .iOS(.v14),
     ],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "SwaarmSdk",
             targets: ["SwaarmSdk"]
         ),
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "SwaarmSdk"
+            name: "SwaarmSdk",
+            resources: [.copy("PrivacyInfo.xcprivacy")]
         ),
         .testTarget(
             name: "SwaarmSdkTests",

@@ -1,12 +1,10 @@
 import AdSupport
-import CoreTelephony
 import Foundation
-import os.log
-import SQLite3
 import UIKit
 
 class EventRepository {
     private var eventsStore: [TrackingEvent] = []
+    private let lock = NSLock()
     private var maxSize: Int
     private var batchSize: Int
     private var vendorId: String
@@ -23,8 +21,8 @@ class EventRepository {
             idfa = nil
         }
         var iosPurchaseValidation: IosPurchaseValidation?
-        if receipt != nil {
-            iosPurchaseValidation = IosPurchaseValidation(receipt: receipt!)
+        if let receipt {
+            iosPurchaseValidation = IosPurchaseValidation(receipt: receipt)
         }
         Logger.debug("idfa: \(idfa as String?)")
 
@@ -42,6 +40,9 @@ class EventRepository {
             iosPurchaseValidation: iosPurchaseValidation
         )
 
+        lock.lock()
+        defer { lock.unlock() }
+
         while eventsStore.count >= maxSize {
             eventsStore.removeFirst()
         }
@@ -50,14 +51,19 @@ class EventRepository {
     }
 
     public func getEvents() -> [TrackingEvent] {
-        return Array(eventsStore[...(min(eventsStore.count, batchSize) - 1)])
+        lock.lock()
+        defer { lock.unlock() }
+
+        guard !eventsStore.isEmpty else { return [] }
+        return Array(eventsStore.prefix(batchSize))
     }
 
     public func clearByEvents(events: [TrackingEvent]) {
-        if eventsStore.count == 0 {
-            return
-        }
-        let eventIds = events.map { $0.id }
-        eventsStore.removeAll(where: { eventIds.contains($0.id) })
+        lock.lock()
+        defer { lock.unlock() }
+
+        guard !eventsStore.isEmpty else { return }
+        let eventIds = Set(events.map { $0.id })
+        eventsStore.removeAll { eventIds.contains($0.id) }
     }
 }
