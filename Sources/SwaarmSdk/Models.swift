@@ -18,6 +18,13 @@ struct TrackingEvent: Codable {
     var advertisingId: String?
     var currency: String?
     var iosPurchaseValidation: IosPurchaseValidation?
+    var installReferrer: InstallReferrer?
+}
+
+struct InstallReferrer: Codable {
+    var referrer: String?
+    var clickTimestamp: Int64?
+    var installBeginTimestamp: Int64?
 }
 
 struct TrackingEventBatch: Codable {

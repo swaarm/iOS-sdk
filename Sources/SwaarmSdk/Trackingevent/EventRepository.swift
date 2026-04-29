@@ -15,7 +15,7 @@ class EventRepository {
         self.vendorId = vendorId
     }
 
-    public func addEvent(typeId: String? = nil, aggregatedValue: Double = 0.0, customValue: String = "", revenue: Double = 0.0, currency: String? = nil, receipt: String? = nil) {
+    public func addEvent(typeId: String? = nil, aggregatedValue: Double = 0.0, customValue: String = "", revenue: Double = 0.0, currency: String? = nil, receipt: String? = nil, installReferrer: InstallReferrer? = nil) {
         var idfa: String? = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         if idfa == "00000000-0000-0000-0000-000000000000" {
             idfa = nil
@@ -37,7 +37,8 @@ class EventRepository {
             osv: UIDevice.current.systemVersion,
             advertisingId: idfa,
             currency: currency,
-            iosPurchaseValidation: iosPurchaseValidation
+            iosPurchaseValidation: iosPurchaseValidation,
+            installReferrer: installReferrer
         )
 
         lock.lock()

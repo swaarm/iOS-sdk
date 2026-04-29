@@ -117,10 +117,18 @@ public class SwaarmAnalytics {
 
         self.isInitialized = true
         if !(UserDefaults.standard.object(forKey: "SwaarmSdk.initEventSent") as? Bool ?? false) {
+            // Apple Search Ads attribution — first launch only.
+            // Returns nil unless the install was attributed to an Apple Ads campaign.
+            var installReferrer: InstallReferrer?
+            if !UserDefaults.standard.bool(forKey: "SwaarmSdk.appleAdsChecked") {
+                installReferrer = await AppleAdsAttribution.fetchInstallReferrer()
+                UserDefaults.standard.set(true, forKey: "SwaarmSdk.appleAdsChecked")
+            }
+
             if checkReinstall() {
-                SwaarmAnalytics.event(typeId: "__reinstall")
+                SwaarmAnalytics.baseEvent(typeId: "__reinstall", installReferrer: installReferrer)
             } else {
-                SwaarmAnalytics.event()
+                SwaarmAnalytics.baseEvent(installReferrer: installReferrer)
             }
             UserDefaults.standard.set(true, forKey: "SwaarmSdk.initEventSent")
         }
@@ -150,14 +158,14 @@ public class SwaarmAnalytics {
         baseEvent(typeId: typeId, revenue: revenue, currency: currency, receipt: receipt)
     }
 
-    static func baseEvent(typeId: String? = nil, aggregatedValue: Double = 0.0, customValue: String = "", revenue: Double = 0.0, currency: String? = nil, receipt: String? = nil) {
+    static func baseEvent(typeId: String? = nil, aggregatedValue: Double = 0.0, customValue: String = "", revenue: Double = 0.0, currency: String? = nil, receipt: String? = nil, installReferrer: InstallReferrer? = nil) {
         if isInitialized == false {
             Logger.debug("Tracker is not initialized")
             return
         }
 
-        eventRepository!.addEvent(typeId: typeId, aggregatedValue: aggregatedValue, customValue: customValue, revenue: revenue, currency: currency, receipt: receipt)
-        Logger.debug("received event with typeId \(typeId as String?) aggregatedValue \(aggregatedValue) customValue \(customValue) revenue \(revenue) currency \(currency as String?) receipt \(receipt as String?)")
+        eventRepository!.addEvent(typeId: typeId, aggregatedValue: aggregatedValue, customValue: customValue, revenue: revenue, currency: currency, receipt: receipt, installReferrer: installReferrer)
+        Logger.debug("received event with typeId \(typeId as String?) aggregatedValue \(aggregatedValue) customValue \(customValue) revenue \(revenue) currency \(currency as String?) receipt \(receipt as String?) installReferrer \(installReferrer as InstallReferrer?)")
     }
 
     public static func disableTracking() {

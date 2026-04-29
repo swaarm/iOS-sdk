@@ -20,7 +20,7 @@ Or add it to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swaarm/iOS-sdk", from: "2.0.1")
+    .package(url: "https://github.com/swaarm/iOS-sdk", from: "2.1.0")
 ]
 ```
 
@@ -143,6 +143,26 @@ AttributionData
 └── googleInstallReferrer: GoogleInstallReferrerData?
     ├── gclid, gbraid, gadSource, wbraid
 ```
+
+---
+
+## Apple Search Ads Attribution
+
+On the first launch after install, the SDK automatically checks whether the install was attributed to an Apple Search Ads (Apple Ads) campaign. No configuration is needed.
+
+If attributed, a UTM-formatted referrer string is attached to the first tracking event in the `installReferrer.referrer` field:
+
+```
+utm_source=appleads&utm_campaign=<campaignId>&utm_adgroup=<adGroupId>&utm_adid=<adId>&utm_keyword=<keywordId>
+```
+
+**Behavior notes:**
+
+- Requires **iOS 14.3+** (silently skipped on older versions)
+- Apple's API may return 404 for ~10s after install — the SDK retries up to 3 times automatically
+- Only the **first event** carries the referrer; subsequent events do not
+- If the install was not attributed to an Apple Ads campaign, the field is simply omitted
+- If the user has disabled "Personalized Ads" in iOS Settings, Apple's API returns no useful data and the field is omitted
 
 ---
 
